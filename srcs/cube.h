@@ -6,7 +6,7 @@
 /*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2024/11/06 11:15:01 by fmaqdasi         ###   ########.fr       */
+/*   Updated: 2024/11/06 11:42:56 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -244,10 +244,7 @@ void				ft_freesplit(char **split);
 void				ft_freesplitint(int **split);
 char				*ft_strjoinfree(char *str1, char *str2, int flag);
 char				*ft_strtrim_free(char *s1, char const *set);
-char				*ft_null(char *ptr);
-int					ft_double_pointer_counter1(char **dp, int line_counter);
 int					ft_double_pointer_counter2(char **dp);
-int					ft_strcmp(const char *s1, const char *s2);
 // to here
 
 double				deg2rad(double degrees);

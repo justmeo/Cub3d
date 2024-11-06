@@ -6,7 +6,7 @@
 /*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 23:13:46 by cafriem           #+#    #+#             */
-/*   Updated: 2024/11/06 11:14:46 by fmaqdasi         ###   ########.fr       */
+/*   Updated: 2024/11/06 11:42:49 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ char	*ft_strtrim_free(char *s1, char const *set)
 	right = (ft_strlen(s1) - 1);
 	while (ft_strchr(set, s1[left]) != NULL)
 		if (s1[left++] == '\0')
-			return (ft_null(ptr = malloc(1)));
+			return (ft_strdup(""));
 	while (ft_strchr(set, s1[right]) != NULL)
 		right--;
 	ptr = ft_calloc(sizeof(char), (right - left) + 2);
@@ -113,22 +113,6 @@ char	*ft_strtrim_free(char *s1, char const *set)
 	return (ptr);
 }
 
-char	*ft_null(char *ptr)
-{
-	ptr[0] = '\0';
-	return (ptr);
-}
-
-int	ft_double_pointer_counter1(char **dp, int line_counter)
-{
-	int	c;
-
-	c = 0;
-	while (dp[line_counter][c] != '\0')
-		c++;
-	return (c);
-}
-
 int	ft_double_pointer_counter2(char **dp)
 {
 	int	line_counter;
@@ -137,18 +121,4 @@ int	ft_double_pointer_counter2(char **dp)
 	while (dp[line_counter] != NULL)
 		line_counter++;
 	return (line_counter);
-}
-
-int	ft_strcmp(const char *s1, const char *s2)
-{
-	size_t	c;
-
-	c = 0;
-	while (s1[c] && s2[c])
-	{
-		if ((unsigned char)s1[c] != (unsigned char)s2[c])
-			return ((unsigned char)s1[c] - (unsigned char)s2[c]);
-		c++;
-	}
-	return ((unsigned char)s1[c] - (unsigned char)s2[c]);
 }
