@@ -6,7 +6,7 @@
 /*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2024/11/06 12:08:18 by fmaqdasi         ###   ########.fr       */
+/*   Updated: 2024/11/06 13:27:33 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,11 @@
 # include <signal.h>
 # include <stdbool.h>
 # include <stdint.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
 
 # define PIE 3.14
-# define COS046 0.89438856137
-# define SIN046 0.4472908464
 # define DOF 50
 # ifdef OSX
 #  include <mlx.h>
