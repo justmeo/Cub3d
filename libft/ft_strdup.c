@@ -3,49 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smokashi <smokashi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/24 11:55:49 by cafriem           #+#    #+#             */
-/*   Updated: 2023/08/28 22:12:18 by smokashi         ###   ########.fr       */
+/*   Created: 2023/07/10 18:48:52 by fmaqdasi          #+#    #+#             */
+/*   Updated: 2023/07/18 10:58:05 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s1)
+char	*ft_strdup(const char *src)
 {
-	int		c;
-	int		c2;
-	char	*ptr;
+	char	*st;
+	int		i;
 
-	c2 = 0;
-	if (s1 == NULL)
-		return (ft_strdup(""));
-	c = ft_strlen(s1);
-	ptr = (char *)malloc(c + 1);
-	if (ptr == NULL)
+	i = 0;
+	st = (char *)malloc(ft_strlen(src)+1);
+	if (!st)
 		return (NULL);
-	while (c2 != c)
+	while (src[i])
 	{
-		ptr[c2] = s1[c2];
-		c2++;
+		st[i] = (char)src[i];
+		i++;
 	}
-	ptr[c2] = '\0';
-	return (ptr);
+	st[i] = '\0';
+	return ((char *)st);
 }
-
-// #include <stdio.h>
-// int main()
-// {
-// 	char *s1 = "hello";
-// 	char *ans;
-
-// 	ans = ft_strdup(s1);
-// 	printf("%s\n", ans);
-// //
-// 	char *tsts1 = "hello";
-// 	char *tstans;
-
-// 	tstans = strdup(tsts1);
-// 	printf("%s\n", tstans);
-// }

@@ -3,32 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/11 17:12:59 by cafriem           #+#    #+#             */
-/*   Updated: 2022/08/18 15:16:14 by cafriem          ###   ########.fr       */
+/*   Created: 2023/07/03 17:56:59 by fmaqdasi          #+#    #+#             */
+/*   Updated: 2023/07/19 11:40:43 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen(const char *ch)
 {
-	size_t	c;
+	int	i;
 
-	c = 0;
-	while (s[c])
-		c++;
-	return (c);
+	i = 0;
+	while (ch[i] != '\0')
+	{
+		i++;
+	}
+	return (i);
 }
-
-// int	main (void)
-// {
-// 	char *str;
-// 	str = "heidwadadadawdadadawdwdadwadasdawasdwasahs";
-// 	printf("%zu\n",ft_strlen(str));
-
-// 	char *tststr;
-// 	tststr = "heidwadadadawdadadawdwdadwadasdawasdwasahs";
-// 	printf("%zu\n",strlen(tststr));
-// }

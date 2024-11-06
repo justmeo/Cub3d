@@ -3,47 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/19 17:33:30 by cafriem           #+#    #+#             */
-/*   Updated: 2022/06/06 18:20:44 by cafriem          ###   ########.fr       */
+/*   Created: 2023/07/08 17:12:39 by fmaqdasi          #+#    #+#             */
+/*   Updated: 2023/07/18 10:36:25 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+char	*ft_strnstr(char const *haystack, char const *needle, size_t n)
 {
-	size_t	c;
-	size_t	c1;
+	size_t	i;
+	size_t	j;
 
-	c = 0;
-	c1 = 0;
-	if (needle[0] == '\0')
+	i = 0;
+	if (n == 0 && haystack == NULL)
+		return (NULL);
+	if (*needle == 0)
 		return ((char *)haystack);
-	while (c < len && c < ft_strlen(haystack))
+	while (haystack[i] != 0 && i < n)
 	{
-		while (haystack[c] == needle[c1] && c < len && c < ft_strlen(haystack))
+		j = 0;
+		while (haystack[i + j] == needle[j] && (needle[j] != 0) && n >= j + i)
 		{
-			c1++;
-			c++;
-			if (needle[c1] == '\0')
+			if (needle[j + 1] == '\0')
 			{
-				c = c - c1;
-				return (&((char *)haystack)[c]);
+				if (n - 1 < i + j)
+					return (NULL);
+				return ((char *)haystack + (i));
 			}
+			j++;
 		}
-		c = c - c1;
-		c1 = 0;
-		c++;
+		i++;
 	}
 	return (NULL);
 }
-
-// int	main(void)
-// {
-// 	char	needle[] = "aabc";
-// 	char	haystack[] = "aaabcabcd";
-// 	printf("%s\n",ft_strnstr(haystack, needle, 12));
-// 	printf("%s\n",strnstr(haystack, needle, 12));
-// }

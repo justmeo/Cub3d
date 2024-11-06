@@ -3,91 +3,95 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/03 14:34:07 by cafriem           #+#    #+#             */
-/*   Updated: 2022/11/10 16:07:03 by cafriem          ###   ########.fr       */
+/*   Created: 2023/07/12 14:24:54 by fmaqdasi          #+#    #+#             */
+/*   Updated: 2023/11/12 14:29:33 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_inside(char const *s, char c, int left)
+static int	len(const char *s, char c)
 {
-	int	c1;
+	int	count;
 
-	c1 = 0;
-	while (s[left] != c && s[left] != '\0')
+	count = 0;
+	while (*s && *s != c)
 	{
-		left++;
-		c1++;
+		count++;
+		s++;
 	}
-	return (c1 + 1);
+	return (count);
 }
 
-static int	ft_count(char const *s, char c)
+static int	amountofwords(char const *s, char c)
 {
-	int	a;
-	int	a1;
-	int	ccount;
+	int	amount;
+	int	is_word;
 
-	a = 0;
-	a1 = 0;
-	ccount = 0;
-	while (s[a])
+	amount = 0;
+	is_word = 0;
+	while (*s)
 	{
-		while (s[a] == c && s[a])
+		if (*s == c)
+			is_word = 0;
+		else if (!is_word)
 		{
-			a++;
-			ccount++;
+			is_word = 1;
+			amount++;
 		}
-		if (s[a] == '\0')
-			break ;
-		a1++;
-		a += ft_inside(s, c, a) - 1;
+		s++;
 	}
-	if (ccount == a)
-		return (1);
-	return (a1 + 1);
+	return (amount);
+}
+
+static void	freeall(char **st, int j)
+{
+	while (j >= 0)
+	{
+		free(st[j]);
+		j--;
+	}
+	free(st);
+}
+
+static int	asign(char **t, char const *s, char c, int a)
+{
+	int	i;
+	int	j;
+
+	j = 0;
+	i = 0;
+	while (j < a)
+	{
+		while (s[i] == c && s[i] != '\0')
+			i++;
+		t[j] = ft_substr(s, i, len(s + i, c));
+		if (!t[j])
+		{
+			freeall(t, j - 1);
+			return (-1);
+		}
+		i = i + len(s + i, c);
+		j++;
+	}
+	t[j] = NULL;
+	return (0);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**main;
-	char	*inside;
-	size_t	left;
-	int		m;
-	size_t	len;
+	char	**t;
+	int		a;
 
-	left = 0;
-	m = 0;
-	len = ft_strlen(s);
-	main = ft_calloc(sizeof(char *), (ft_count(s, c)));
-	if (main == NULL)
+	if (!s)
 		return (NULL);
-	while (left < len && 1 != ft_count(s, c))
-	{
-		while (s[left] == c && s[left] != '\0')
-			left++;
-		if (s[left] == '\0')
-			break ;
-		inside = ft_substr(s, left, ft_inside(s, c, left) - 1);
-		left += ft_inside(s, c, left) - 1;
-		main[m] = inside;
-		m++;
-	}
-	main[m] = NULL;
-	return (main);
+	a = amountofwords(s, c);
+	t = (char **)malloc(sizeof(char *) * (a + 1));
+	if (!t)
+		return (NULL);
+	if (asign(t, s, c, a) == -1)
+		return (NULL);
+	return (t);
 }
-
-/*
-int	main(void)
-{
-	char	**main;
-
-	main = ft_split("  tripouille   hello you   ", ' ');
-	printf("%s\n", main[0]);
-	printf("%s\n", main[1]);
-	printf("%s\n", main[2]);
-	printf("%s\n", main[3]);
-}*/

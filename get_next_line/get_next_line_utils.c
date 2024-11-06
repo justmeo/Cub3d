@@ -1,16 +1,71 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/11 17:42:41 by fmaqdasi          #+#    #+#             */
-/*   Updated: 2023/07/19 12:55:53 by fmaqdasi         ###   ########.fr       */
+/*   Created: 2023/07/26 17:51:30 by fmaqdasi          #+#    #+#             */
+/*   Updated: 2023/08/05 12:43:54 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "get_next_line.h"
+
+size_t	ft_strlen(const char *ch)
+{
+	int	i;
+
+	i = 0;
+	while (ch[i] != '\0')
+	{
+		i++;
+	}
+	return (i);
+}
+
+void	ft_bzero(void *ch, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	while (n != 0)
+	{
+		((unsigned char *)ch)[i] = 0;
+		i++;
+		n--;
+	}
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*st;
+
+	if (size != 0 && (count > UINT32_MAX / size))
+		return (NULL);
+	st = malloc(count * size);
+	if (!st)
+		return (NULL);
+	ft_bzero(st, count * size);
+	return (st);
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	while (*s)
+	{
+		if (*s == (unsigned char)c)
+		{
+			return ((char *)s);
+		}
+		s++;
+	}
+	if (*s == (unsigned char)c)
+	{
+		return ((char *)s);
+	}
+	return (NULL);
+}
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {

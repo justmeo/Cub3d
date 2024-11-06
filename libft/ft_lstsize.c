@@ -1,43 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_freesplit.c                                     :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/30 02:03:21 by smokashi          #+#    #+#             */
-/*   Updated: 2024/02/10 20:24:20 by cafriem          ###   ########.fr       */
+/*   Created: 2023/07/16 17:25:40 by fmaqdasi          #+#    #+#             */
+/*   Updated: 2023/07/18 10:56:42 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_freesplit(char **split)
+int	ft_lstsize(t_list *lst)
 {
 	int	i;
 
-	i = 0;
-	if (split == NULL)
-		return ;
-	while (split[i])
+	i = 1;
+	if (!lst)
 	{
-		free(split[i]);
+		return (0);
+	}
+	while (lst->next != NULL)
+	{
+		lst = lst->next;
 		i++;
 	}
-	free(split);
-}
-
-void	ft_freesplitint(int **split)
-{
-	int	i;
-
-	i = 0;
-	if (split == NULL)
-		return ;
-	while (split[i])
-	{
-		free(split[i]);
-		i++;
-	}
-	free(split);
+	return (i);
 }

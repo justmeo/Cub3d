@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/25 13:00:46 by cafriem           #+#    #+#             */
-/*   Updated: 2022/06/07 18:04:58 by cafriem          ###   ########.fr       */
+/*   Created: 2023/07/11 13:33:55 by fmaqdasi          #+#    #+#             */
+/*   Updated: 2023/07/19 10:53:45 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,24 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t	c;
-	size_t	c1;
-	char	*res;
+	char	*st;
+	size_t	i;
 
-	c = 0;
-	c1 = 0;
-	if (len > ft_strlen(s))
-		len = ft_strlen(s);
-	if (len == 0)
-		return (ft_strdup(""));
-	res = (char *)malloc((len) + 1);
-	if (res == NULL)
+	if (s == NULL)
 		return (NULL);
-	while (s[c] != '\0')
+	if ((size_t)start > ft_strlen(s))
+		len = 0;
+	else if (len > (ft_strlen(s) - start))
+		len = ft_strlen(s) - start;
+	i = 0;
+	st = (char *)malloc(len + 1);
+	if (!st)
+		return (NULL);
+	while (i < len)
 	{
-		if (c >= start && c1 < len)
-		{
-			res[c1] = s[c];
-			c1++;
-		}
-		c++;
+		st[i] = s[i + start];
+		i++;
 	}
-	res[c1] = '\0';
-	return (res);
+	st[i] = '\0';
+	return (st);
 }
-
-// int	main(void)
-// {
-// 	printf("%s\n", ft_substr("lorem ipsum dolor sit amet", 7, 10));
-// 	// printf("%s\n", ft_substr("  tripouille  42  ", 14, 2));
-// }

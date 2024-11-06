@@ -3,35 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/12 17:36:37 by cafriem           #+#    #+#             */
-/*   Updated: 2022/06/08 13:46:04 by cafriem          ###   ########.fr       */
+/*   Created: 2023/07/04 15:02:52 by fmaqdasi          #+#    #+#             */
+/*   Updated: 2023/07/18 10:38:37 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+void	ft_bzero(void *ch, size_t n)
 {
-	size_t	c;
+	size_t	i;
 
-	c = 0;
-	while (c != n)
+	i = 0;
+	while (n != 0)
 	{
-		((unsigned char *)s)[c] = 0;
-		c++;
+		((unsigned char *)ch)[i] = 0;
+		i++;
+		n--;
 	}
 }
-
-/*#include <stdio.h>
-
-int main(void)
-{
-	char	s[] = "hello my friend";
-	char	test[] = "hello my friend";
-	
-	ft_bzero(s, 5);
-//
-	
-}*/

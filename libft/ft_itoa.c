@@ -3,98 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/28 11:59:40 by cafriem           #+#    #+#             */
-/*   Updated: 2022/06/14 13:34:42 by cafriem          ###   ########.fr       */
+/*   Created: 2023/07/16 10:54:39 by fmaqdasi          #+#    #+#             */
+/*   Updated: 2023/07/16 13:20:11 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*ft_revstr(char *res, int minus)
+static int	count(int n)
 {
-	char	letter;
-	int		left;
-	int		right;
+	int	i;
 
-	left = 0;
-	right = (ft_strlen(res)) - 1;
-	if (minus == 1)
+	i = 1;
+	while (n / 10 != 0)
 	{
-		letter = res[left];
-		res[left] = '-';
-		res[right] = letter;
-		right--;
-		left++;
-	}
-	while (left <= right)
-	{
-		letter = res[left];
-		res[left] = res[right];
-		res[right] = letter;
-		right--;
-		left++;
-	}
-	res[ft_strlen(res)] = '\0';
-	return (res);
-}
-
-static int	ft_sizeint(int n)
-{
-	int	c1;
-	int	minus;
-
-	c1 = 0;
-	minus = 0;
-	if (n == 0)
-		return (1);
-	while (n != 0)
-	{
-		if (n < 0)
-		{
-			n = n * -1;
-			minus++;
-		}
 		n = n / 10;
-		c1++;
+		i++;
 	}
-	if (minus == 1)
-		c1++;
-	return (c1);
+	return (i);
 }
 
 char	*ft_itoa(int n)
 {
-	char	*res;
-	int		c;
-	int		c1;
-	int		minus;
+	char		*st;
+	int			a;
+	long int	x;
 
-	minus = n < 0;
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
-	c = ft_sizeint(n);
-	c1 = 0;
-	res = malloc(c + 1);
-	if (res == NULL)
-		return (NULL);
-	if (minus)
-		n = n * -1;
-	while (c >= 0)
+	x = n;
+	a = count(n);
+	if (0 > x)
 	{
-		res[c1++] = (char)((n % 10) + 48);
-		n = n / 10;
-		c--;
+		x = x * -1;
+		a++;
 	}
-	res[c1 - 1] = '\0';
-	return (ft_revstr(res, minus));
+	st = (char *)malloc(a + 1);
+	if (!st)
+		return (NULL);
+	st[a] = '\0';
+	while (a--)
+	{
+		st[a] = (x % 10) + '0';
+		x = x / 10;
+	}
+	if (n < 0)
+		st[0] = '-';
+	return (st);
 }
-
-// int	main(void)
-// {
-// 	int	n;
-
-// 	n = 12345;
-// 	printf("%s", ft_itoa(n));
-// }

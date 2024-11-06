@@ -3,35 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/17 14:05:19 by cafriem           #+#    #+#             */
-/*   Updated: 2022/06/30 16:57:33 by cafriem          ###   ########.fr       */
+/*   Created: 2023/07/04 18:22:42 by fmaqdasi          #+#    #+#             */
+/*   Updated: 2023/07/06 18:53:50 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t len)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	size_t	c;
+	size_t	i;
 
-	c = 0;
-	while (c != len)
+	if (dst == NULL && src == NULL)
 	{
-		((char *)dst)[c] = ((char *)src)[c];
-		c++;
+		return (NULL);
+	}
+	i = 0;
+	while (i < n)
+	{
+		((char *)dst)[i] = ((char *)src)[i];
+		i++;
 	}
 	return (dst);
 }
-
-/*int main()
-{
-	char dst[] = "zyxwtuv";
-	char src[] = "abcde";
-	printf("%s\n", ft_memcpy(dst, src, 4));
-
-	char tstdst[] = "zyxwtuv";
-	char tstsrc[] = "abcde";
-	printf("%s\n", memcpy(tstdst, tstsrc, 4));
-}*/

@@ -3,58 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/20 14:56:44 by cafriem           #+#    #+#             */
-/*   Updated: 2022/09/03 13:59:27 by cafriem          ###   ########.fr       */
+/*   Created: 2023/07/10 09:50:44 by fmaqdasi          #+#    #+#             */
+/*   Updated: 2023/07/18 10:29:14 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_res(int c1, const char *str, int minus)
+static int	over(const char *str, int sign)
 {
-	int	c;
+	long	tot;
+	long	tmp;
+	int		i;
 
-	c = 0;
-	while (str[c1] >= '0' && str[c1] <= '9')
+	i = 0;
+	tot = 0;
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		c = (c * 10) + (str[c1] - 48);
-		c1++;
+		tmp = tot;
+		tot = tot * 10 + str[i] - '0';
+		if (tmp > tot)
+		{
+			if (sign == -1)
+				return (0);
+			else
+				return (-1);
+		}
+		i++;
 	}
-	if (minus == -1)
-		return (c * -1);
-	return (c);
+	return (tot * sign);
 }
 
 int	ft_atoi(const char *str)
 {
-	int	c;
-	int	c1;
-	int	minus;
+	int	sign;
+	int	i;
 
-	c1 = 0;
-	c = 0;
-	minus = 0;
-	while (str[c1] == ' ' || (str[c1] >= 9 && str[c1] <= 13))
-		c1++;
-	while (str[c1] == '-' || str[c1] == '+')
+	i = 0;
+	sign = 1;
+	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+		str++;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		if (str[c1] == '-')
-			minus--;
-		c++;
-		c1++;
+		if (str[i] == '-')
+			sign *= -1;
+		str++;
 	}
-	if (c > 1)
-		return (0);
-	return (ft_res(c1, str, minus));
+	while (str[i] == '0')
+		i++;
+	return (over(str + i, sign));
 }
-
-/*int main()
-{
-	char str[] = "   -+342iniwn232";
-	printf("%d\n", ft_atoi(str));
-//
-	char tetstr[] = "   -+342iniwn232";
-	printf("%d\n", atoi(tetstr));
-}*/

@@ -3,78 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/24 13:51:32 by cafriem           #+#    #+#             */
-/*   Updated: 2023/11/09 17:09:50 by cafriem          ###   ########.fr       */
+/*   Created: 2023/07/12 09:56:00 by fmaqdasi          #+#    #+#             */
+/*   Updated: 2023/07/18 10:41:14 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*ft_null(char *ptr)
+static int	check(char s, char const *set)
 {
-	ptr[0] = '\0';
-	return (ptr);
-}
+	int	i;
 
-char	*ft_strtrim_free(char *s1, char const *set)
-{
-	int		left;
-	int		right;
-	int		c;
-	char	*ptr;
-
-	left = 0;
-	c = 0;
-	right = (ft_strlen(s1) - 1);
-	while (ft_strchr(set, s1[left]) != NULL)
-		if (s1[left++] == '\0')
-			return (ft_null(ptr = malloc(1)));
-	while (ft_strchr(set, s1[right]) != NULL)
-		right--;
-	ptr = ft_calloc(sizeof(char), (right - left) + 2);
-	if (ptr == NULL)
-		return (NULL);
-	right++;
-	while (left != right)
-		ptr[c++] = s1[left++];
-	free(s1);
-	return (ptr);
+	i = 0;
+	while (set[i] != '\0')
+	{
+		if (set[i] == s)
+			return (1);
+		i++;
+	}
+	return (0);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	int		left;
-	int		right;
-	int		c;
-	char	*ptr;
+	char	*st;
+	size_t	i;
+	size_t	sta;
+	size_t	end;
 
-	left = 0;
-	c = 0;
-	right = (ft_strlen(s1) - 1);
-	while (ft_strchr(set, s1[left]) != NULL)
-		if (s1[left++] == '\0')
-			return (ft_null(ptr = malloc(1)));
-	while (ft_strchr(set, s1[right]) != NULL)
-		right--;
-	ptr = malloc((right - left) + 2);
-	if (ptr == NULL)
+	if (s1 == NULL || set == NULL)
 		return (NULL);
-	right++;
-	while (left != right)
+	sta = 0;
+	end = ft_strlen(s1);
+	i = 0;
+	while (s1[sta] != '\0' && check(s1[sta], set))
+		sta++;
+	while (end > sta && check(s1[end - 1], set))
+		end--;
+	st = (char *)malloc(end - sta + 1);
+	if (!st)
+		return (NULL);
+	while (sta < end)
 	{
-		ptr[c] = s1[left];
-		c++;
-		left++;
+		st[i] = s1[sta];
+		sta++;
+		i++;
 	}
-	ptr[c] = '\0';
-	return (ptr);
+	st[i] = '\0';
+	return (st);
 }
-
-// int	main(void)
-// {
-// 	char s1[] = "          ";
-// 	char set[] = " ";
-// 	printf("%s", ft_strtrim(s1, set));
-// }
