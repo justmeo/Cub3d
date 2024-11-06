@@ -6,7 +6,7 @@
 /*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 23:18:13 by cafriem           #+#    #+#             */
-/*   Updated: 2024/11/06 12:54:21 by fmaqdasi         ###   ########.fr       */
+/*   Updated: 2024/11/06 19:27:52 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	set_booleans(t_cub3d *cube)
 	cube->dir.left = false;
 	cube->dir.right = false;
 	cube->m = false;
-	cube->dir.shift = false;
 }
 
 void	openmap(t_cub3d *cub3d, char *argv[])
