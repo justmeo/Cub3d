@@ -6,7 +6,7 @@
 /*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:59:52 by cafriem           #+#    #+#             */
-/*   Updated: 2024/11/06 12:51:20 by fmaqdasi         ###   ########.fr       */
+/*   Updated: 2024/11/06 14:02:25 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,8 @@ void	change_angle(t_cub3d *cube)
 
 void	change_position(t_cub3d *cube)
 {
-	if (!cube->dir.shift)
-	{
 		cube->player.p_dx = -cos(deg2rad(cube->player.p_angle)) * 1;
 		cube->player.p_dy = sin(deg2rad(cube->player.p_angle)) * 1;
-	}
-	else
-	{
-		cube->player.p_dx = (-cos(deg2rad(cube->player.p_angle))) * 3;
-		cube->player.p_dy = (sin(deg2rad(cube->player.p_angle))) * 3;
-	}
 }
 
 int	keydown(int keycode, t_cub3d *cube)
@@ -52,8 +44,6 @@ int	keydown(int keycode, t_cub3d *cube)
 		cube->dir.left = true;
 	else if (keycode == RIGHT)
 		cube->dir.right = true;
-	else if (keycode == SHIFT)
-		cube->dir.shift = true;
 	return (0);
 }
 
@@ -73,8 +63,6 @@ int	keyup(int keycode, t_cub3d *cube)
 		cube->dir.left = false;
 	else if (keycode == RIGHT)
 		cube->dir.right = false;
-	else if (keycode == SHIFT)
-		cube->dir.shift = false;
 	return (0);
 }
 

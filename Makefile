@@ -6,7 +6,7 @@
 #    By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/02 22:13:13 by jadithya          #+#    #+#              #
-#    Updated: 2024/11/06 11:19:21 by fmaqdasi         ###   ########.fr        #
+#    Updated: 2024/11/06 14:04:01 by fmaqdasi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,6 @@ NAME = cub3D
 
 SRCS = $(SRCDIR)/cub3d.c \
 		$(SRCDIR)/casting.c \
-		$(SRCDIR)/DDA_help.c \
 		$(SRCDIR)/DDA.c \
 		$(SRCDIR)/drawing.c \
 		$(SRCDIR)/error.c \

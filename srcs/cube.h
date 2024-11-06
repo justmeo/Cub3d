@@ -6,7 +6,7 @@
 /*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2024/11/06 13:27:33 by fmaqdasi         ###   ########.fr       */
+/*   Updated: 2024/11/06 14:08:51 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ typedef struct angles
 	bool			d;
 	bool			left;
 	bool			right;
-	bool			shift;
 }					t_dir;
 
 typedef struct player
@@ -137,7 +136,7 @@ typedef struct casting
 	t_point			height;
 }					t_cast;
 
-typedef struct fkifiknow
+typedef struct dda
 {
 	int				i;
 	float			s;
