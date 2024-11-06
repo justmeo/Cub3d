@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:43:50 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/12 17:28:01 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/11/06 12:46:56 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,3 +100,30 @@ bool	is_wall(t_cub3d *cube, t_point ray)
 		return (true);
 	return (false);
 }
+
+
+/*
+This code file contains several functions related to drawing and rendering in a 3D raycasting engine. Let's break down each function:
+draw_square:
+Draws a square on the screen, typically used for rendering map tiles.
+Each square is 16x16 pixels.
+The border of the square is drawn in a light gray color (0x00DDDDDD).
+draw_angle:
+Draws a line representing the player's viewing angle.
+Uses a simplified DDA algorithm to draw the line.
+The line is drawn in red (0x00FF0000).
+draw_player:
+Draws the player as a 3x3 pixel square on the minimap.
+The player is represented in red (0x00FF0000).
+Also calls draw_angle to show the player's viewing direction.
+deg2rad:
+Converts degrees to radians.
+Uses a constant PIE (likely defined as π elsewhere in the code).
+is_wall:
+Checks if a given point (ray) intersects with a wall in the map.
+Returns true if the map tile at the given coordinates is '1' (representing a wall).
+Key points:
+The code uses a scale factor of 4 for the minimap (dividing coordinates by 4).
+Map tiles are represented as 16x16 pixel squares.
+The player's position and direction are visualized on a minimap.
+*/

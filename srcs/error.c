@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:20:49 by cafriem           #+#    #+#             */
-/*   Updated: 2024/02/12 17:29:29 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/11/06 12:48:52 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,3 +99,34 @@ void	mapread(t_cub3d *cub3d, int start)
 	map_checker(cub3d);
 	player_info(cub3d);
 }
+
+/*
+This code file contains functions for error handling, initialization, and map processing in a 3D raycasting game. Let's break down each function:
+init:
+Initializes the main game structure (t_cub3d) by setting pointers to NULL.
+This prevents undefined behavior when trying to free uninitialized pointers later.
+free_map:
+Frees the memory allocated for the map data.
+Uses a custom ft_freesplit function, likely to free a 2D array.
+error:
+Handles various error conditions with descriptive messages.
+Each error is associated with a flag number.
+After printing the error message, it calls close_free and exits the program.
+valid_line:
+Checks if a line in the map file contains only valid characters.
+Uses a helper function valid_letter (not shown here).
+If an invalid character is found, it frees memory and calls the error function.
+mapread:
+Reads and processes the map data from the file.
+Concatenates map lines into a single string, then splits it into a 2D array.
+Performs various checks on the map:
+Checks for player existence
+Calculates map size
+Verifies map dimensions
+Calls map_checker for further validation
+Sets up player information
+Key points:
+The code uses custom memory management functions (e.g., ft_strjoinfree, ft_strtrim_free).
+There's a strong emphasis on error checking and graceful error handling.
+The map is stored both as a single string and as a 2D array for different processing needs.
+*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   casting.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:50:34 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/12 17:26:25 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/11/06 12:42:24 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,8 +142,31 @@ void	set_rayv(t_cub3d *cube, t_cast *cast)
 		cast->dof++;
 	}
 }
-
-			// if (cast->rayv.x < 0)
-			// 	cast->rayv.x = 0;
-			// if (cast->rayv.y < 0)
-			// 	cast->rayv.y = 0;
+/*
+This code appears to be part of a raycasting implementation for a 3D game or graphics application, likely using the Cube3D framework. Let's break down the main components and functions:
+draw_floor_ceiling:
+Draws the floor and ceiling of the 3D environment.
+Uses a Digital Differential Analyzer (DDA) algorithm to draw lines.
+The screen is split horizontally, with the top half being the ceiling and the bottom half the floor.
+set_horizontals:
+Sets up horizontal ray intersections for raycasting.
+Handles different cases based on the ray angle (above or below 180 degrees).
+Calculates initial ray positions and offsets for horizontal grid lines.
+set_rayh:
+Continues the horizontal ray casting process.
+Checks for wall hits along horizontal grid lines.
+Calculates the distance to horizontal intersections.
+set_verticals:
+Similar to set_horizontals, but for vertical ray intersections.
+Handles different cases based on the ray angle (left or right of 90/270 degrees).
+Calculates initial ray positions and offsets for vertical grid lines.
+set_rayv:
+Continues the vertical ray casting process.
+Checks for wall hits along vertical grid lines.
+Calculates the distance to vertical intersections.
+Key points:
+The code uses a 64x64 grid system for the map (evident from the bit-shifting operations).
+It implements both horizontal and vertical raycasting to determine wall distances.
+The DOF (Depth of Field) constant is used to limit the number of ray steps.
+The code handles edge cases like rays parallel to axes (0, 90, 180, 270 degrees).
+*/

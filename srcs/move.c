@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bonus_move.c                                       :+:      :+:    :+:   */
+/*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 21:11:15 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/12 17:24:38 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/11/06 12:58:32 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,3 +80,27 @@ int	move(t_cub3d *cube)
 	draw_map(cube);
 	return (0);
 }
+
+/*
+This code file implements player movement and collision detection for a 3D raycasting game. Let's break down each function:
+condition:
+Checks if the player is colliding with walls.
+Checks multiple points around the player (center and 8 surrounding points) to prevent clipping through corners.
+Returns true if any of these points intersect with a wall ('1' in the map).
+check_boundaries:
+Handles lateral movement (left and right strafing).
+Moves the player perpendicular to their facing direction.
+Uses the condition function to check for collisions and reverses movement if a collision occurs.
+move:
+The main function for handling player movement.
+Calls change_angle and change_position (defined elsewhere) to update the player's orientation.
+Handles forward and backward movement.
+Uses the condition function to check for collisions and reverses movement if a collision occurs.
+Calls check_boundaries for lateral movement.
+Calls draw_map to update the game display after movement.
+Key points:
+The game uses a tile-based map where each tile is 64x64 pixels.
+Collision detection is done by checking multiple points around the player to prevent corner clipping.
+Movement is broken down into x and y components, allowing for sliding along walls.
+The code supports four-directional movement (forward, backward, left, right) plus rotation.
+*/

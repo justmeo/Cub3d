@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_more3.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 23:18:13 by cafriem           #+#    #+#             */
-/*   Updated: 2024/02/12 17:32:08 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/11/06 12:54:21 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,3 +43,24 @@ void	openmap(t_cub3d *cub3d, char *argv[])
 	cub3d->player.p_dx = cos(cub3d->player.p_angle) * 1;
 	cub3d->player.p_dy = sin(cub3d->player.p_angle) * 1;
 }
+
+/*
+This code file contains two important functions for initializing and setting up the game environment in a 3D raycasting game. Let's break down each function:
+set_booleans:
+Initializes various boolean flags in the game structure.
+Sets movement directions (w, s, a, d) to false.
+Sets rotation directions (left, right) to false.
+Initializes other game state flags (m, shift) to false.
+openmap:
+Opens and reads the map file specified in the command line arguments.
+Uses the readfile function (defined elsewhere) to read the entire file content.
+Splits the file content into lines and stores them in cub3d->map.file_map.
+Calls texture_parse to process texture and color information.
+Sets the initial player position based on the map data.
+Initializes the player's direction vector based on their initial angle.
+Key points:
+The set_booleans function ensures all movement and state flags start in a known (false) state.
+The openmap function handles the entire process of loading and initial processing of the map file.
+Player position is set in terms of pixel coordinates (multiplying map coordinates by 64 and adding 32 for center positioning).
+Initial player direction is set using cosine and sine functions.
+*/

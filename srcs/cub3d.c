@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:31:36 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/14 15:49:29 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/11/06 12:43:07 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,3 +96,37 @@ int	main(int argc, char *argv[])
 	mlx_loop_hook(cube.mlx, move, &cube);
 	mlx_loop(cube.mlx);
 }
+
+
+/*
+This code appears to be the main implementation file for a 3D game or graphics application, likely a Wolfenstein 3D-style game using the MLX library. Let's break down the main components:
+t_ext function:
+Loads texture images from XPM files.
+Converts the image data into a 2D array of unsigned integers.
+This allows for easier texture mapping in the rendering process.
+check_text function:
+Verifies that all required texture files exist and are readable.
+If any texture is missing or unreadable, it terminates the program with an error.
+get_text function:
+Calls check_text to verify textures.
+Loads all four directional textures (North, South, East, West) using t_ext.
+create_map function:
+Initializes the MLX window and context.
+Sets up the game window with dimensions 800x800.
+Loads textures and draws the initial map.
+main function:
+Checks command-line arguments and file accessibility.
+Initializes the game structure.
+Opens and processes the map file.
+Sets up event hooks for:
+Window closing (X button)
+Key press and release events
+Continuous movement updates
+Starts the MLX event loop.
+Key points:
+The program expects a single command-line argument, which should be the path to a valid map file.
+It uses MLX (MiniLibX) for graphics rendering and event handling.
+Textures are loaded from XPM files and converted to a format suitable for quick access during rendering.
+The game window is set to 800x800 pixels.
+The code implements basic error handling for file access and texture loading.
+*/

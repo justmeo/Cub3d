@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_more2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 23:15:53 by cafriem           #+#    #+#             */
-/*   Updated: 2024/02/12 17:31:56 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/11/06 12:53:36 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,3 +94,29 @@ int	get_color(char *line)
 	ft_freesplit(spl);
 	return (ret);
 }
+
+/*
+This code file contains several utility functions for a 3D raycasting game. Let's break down each function:
+readfile:
+Reads a file line by line using get_next_line.
+Concatenates all lines into a single string.
+Handles special cases for map parsing, including empty lines and texture definitions.
+dist:
+Calculates the Euclidean distance between two points (player and ray endpoint).
+Uses the Pythagorean theorem.
+initialize_cast:
+Sets up initial values for the raycasting process.
+Initializes the ray angle, number of rays, and screen dimensions.
+door_or_wall:
+Determines whether to render a vertical or horizontal wall texture based on which intersection (vertical or horizontal) is closer.
+get_color:
+Parses a color string in the format "R,G,B".
+Validates that there are exactly three color components.
+Checks if each component is a valid digit.
+Creates an RGB color value using create_trgb function.
+Key points:
+The readfile function handles complex file parsing, including special cases for map layout.
+Distance calculation is crucial for determining wall heights in raycasting.
+The raycasting process is initialized with a 60-degree field of view (30 degrees on each side of the player's angle).
+Color parsing includes validation to ensure the correct format and valid numeric values.
+*/

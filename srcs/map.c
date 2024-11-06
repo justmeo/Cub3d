@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jadithya <jadithya@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 17:31:17 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/12 17:36:38 by jadithya         ###   ########.fr       */
+/*   Updated: 2024/11/06 12:57:17 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,3 +93,36 @@ void	draw_map(t_cub3d *cube)
 	mlx_put_image_to_window(cube->mlx, cube->mlx_window, cube->img.img, 0, 0);
 	mlx_destroy_image(cube->mlx, cube->img.img);
 }
+
+/*
+This code file contains the main rendering functions for a 3D raycasting game. Let's break down each function:
+cast_n_project:
+Determines the shortest distance to a wall (vertical or horizontal intersection).
+Applies the fisheye correction using cosine of the angle difference.
+Calculates the height of the wall slice to be drawn.
+Calls door_or_wall to render the appropriate texture.
+Draws minimap rays if the minimap is enabled.
+draw_rays:
+The main raycasting loop.
+Casts 800 rays (one for each column of the screen).
+For each ray:
+Calculates horizontal and vertical intersections.
+Determines the closest wall hit.
+Calls cast_n_project to render the wall slice.
+draw_map2:
+Renders the 2D minimap if enabled.
+Draws white squares for walls.
+draw_map:
+The main rendering function.
+Creates a new image for the frame.
+Draws the floor and ceiling.
+Calls draw_rays to render the 3D view.
+Calls draw_map2 to render the minimap (if enabled).
+Draws the player on the minimap (if enabled).
+Puts the rendered image to the window.
+Key points:
+The game uses a resolution of 800x800 pixels.
+Raycasting is done with 800 rays, one for each vertical strip of the screen.
+The minimap feature can be toggled on/off.
+Textures are applied to walls based on whether the hit was vertical or horizontal.
+*/

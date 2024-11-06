@@ -6,7 +6,7 @@
 /*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 23:13:46 by cafriem           #+#    #+#             */
-/*   Updated: 2024/11/06 11:42:49 by fmaqdasi         ###   ########.fr       */
+/*   Updated: 2024/11/06 12:50:12 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,3 +122,32 @@ int	ft_double_pointer_counter2(char **dp)
 		line_counter++;
 	return (line_counter);
 }
+
+/*
+This code file contains several utility functions for memory management and string manipulation, specifically tailored for the needs of a 3D raycasting game. Let's break down each function:
+free_point:
+Frees a 2D array of unsigned integers, specifically sized 65x65.
+Used for freeing texture data.
+close_free:
+Comprehensive cleanup function for the main game structure.
+Frees texture data, map points, and file map data.
+ft_freesplit:
+Frees a 2D array of strings (char**).
+ft_freesplitint:
+Frees a 2D array of integers (int**).
+ft_strjoinfree:
+Joins two strings and optionally frees one or both of the input strings.
+The flag parameter determines which strings to free:
+1: free str1
+2: free str2
+3: free both str1 and str2
+ft_strtrim_free:
+Trims specified characters from the beginning and end of a string.
+Frees the input string and returns a new allocated string.
+ft_double_pointer_counter2:
+Counts the number of elements in a NULL-terminated array of strings.
+Key points:
+These functions are designed to work with the specific data structures used in the game.
+There's a strong emphasis on proper memory management, ensuring that allocated memory is freed.
+Custom versions of standard library functions (like strjoin and strtrim) are implemented with additional memory management features.
+*/

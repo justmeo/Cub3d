@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafriem <cafriem@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:27:50 by jadithya          #+#    #+#             */
-/*   Updated: 2024/02/14 15:50:50 by cafriem          ###   ########.fr       */
+/*   Updated: 2024/11/06 12:55:21 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,3 +86,29 @@ int	check_leftright(t_cub3d *cub3d, int row, int colom)
 	}
 	return (1);
 }
+
+/*
+This code file contains utility functions for map parsing and validation in a 3D raycasting game. Let's break down each function:
+create_trgb:
+Creates a 32-bit color value from individual transparency, red, green, and blue components.
+Uses bitwise operations to combine the color components.
+check_digit:
+Checks if a string contains only digit characters.
+Returns 1 if the string is all digits, 0 otherwise.
+Frees the input string, which is unusual and could lead to issues if the caller still needs the string.
+valid_letter:
+Checks if a character is a valid map element.
+Returns 0 for valid characters ('0', 'N', 'S', 'E', 'W', ' ', '1'), 1 for invalid characters.
+check_updown:
+Checks the vertical integrity of the map at a given position.
+Ensures that there are walls ('1') above and below any open space or player position.
+Triggers an error if an invalid character or map edge is encountered before a wall.
+check_leftright:
+Similar to check_updown, but checks horizontal integrity.
+Ensures that there are walls to the left and right of any open space or player position.
+Returns 1 if the check passes, otherwise triggers an error.
+Key points:
+These functions are crucial for ensuring the map is properly enclosed and contains only valid characters.
+The map validation assumes that the map is rectangular and that '1' represents walls.
+Error handling is done by calling an error function with specific error codes.
+*/
