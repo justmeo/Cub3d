@@ -6,7 +6,7 @@
 /*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:59:52 by cafriem           #+#    #+#             */
-/*   Updated: 2024/11/06 14:02:25 by fmaqdasi         ###   ########.fr       */
+/*   Updated: 2024/11/06 19:35:02 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,6 @@ void	change_angle(t_cub3d *cube)
 		cube->player.p_angle = 360;
 	else if (cube->player.p_angle >= 360)
 		cube->player.p_angle = 0;
-}
-
-void	change_position(t_cub3d *cube)
-{
-		cube->player.p_dx = -cos(deg2rad(cube->player.p_angle)) * 1;
-		cube->player.p_dy = sin(deg2rad(cube->player.p_angle)) * 1;
 }
 
 int	keydown(int keycode, t_cub3d *cube)

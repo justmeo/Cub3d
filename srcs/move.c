@@ -6,7 +6,7 @@
 /*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 21:11:15 by jadithya          #+#    #+#             */
-/*   Updated: 2024/11/06 13:43:07 by fmaqdasi         ###   ########.fr       */
+/*   Updated: 2024/11/06 19:34:51 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,14 @@ bool	condition(t_cub3d *cube)
 
 	x = cube->player.p_y;
 	y = cube->player.p_x;
-	if (cube->map.points[x / 64][y / 64] == '1'
-	|| cube->map.points[(x - 15) / 64][(y - 15) / 64] == '1'
-	|| cube->map.points[(x) / 64][(y - 15) / 64] == '1'
-	|| cube->map.points[(x - 15) / 64][(y) / 64] == '1'
-	|| cube->map.points[(x + 15) / 64][(y + 15) / 64] == '1'
-	|| cube->map.points[(x) / 64][(y + 15) / 64] == '1'
-	|| cube->map.points[(x + 15) / 64][(y) / 64] == '1'
-	|| cube->map.points[(x - 15) / 64][(y + 15) / 64] == '1'
-	|| cube->map.points[(x + 15) / 64][(y - 15) / 64] == '1')
+	if (cube->map.points[x / 64][y / 64] == '1' || cube->map.points[(x - 15)
+		/ 64][(y - 15) / 64] == '1' || cube->map.points[(x) / 64][(y - 15)
+		/ 64] == '1' || cube->map.points[(x - 15) / 64][(y) / 64] == '1'
+		|| cube->map.points[(x + 15) / 64][(y + 15) / 64] == '1'
+		|| cube->map.points[(x) / 64][(y + 15) / 64] == '1'
+		|| cube->map.points[(x + 15) / 64][(y) / 64] == '1'
+		|| cube->map.points[(x - 15) / 64][(y + 15) / 64] == '1'
+		|| cube->map.points[(x + 15) / 64][(y - 15) / 64] == '1')
 		return (true);
 	return (false);
 }
@@ -57,7 +56,8 @@ void	check_boundaries(t_cub3d *cube)
 int	move(t_cub3d *cube)
 {
 	change_angle(cube);
-	change_position(cube);
+	cube->player.p_dx = -cos(deg2rad(cube->player.p_angle)) * 1;
+	cube->player.p_dy = sin(deg2rad(cube->player.p_angle)) * 1;
 	if (cube->dir.w)
 	{
 		cube->player.p_x += cube->player.p_dx;
@@ -101,6 +101,8 @@ Calls draw_map to update the game display after movement.
 Key points:
 The game uses a tile-based map where each tile is 64x64 pixels.
 Collision detection is done by checking multiple points around the player to prevent corner clipping.
-Movement is broken down into x and y components, allowing for sliding along walls.
-The code supports four-directional movement (forward, backward, left, right) plus rotation.
+Movement is broken down into x and y components,
+	allowing for sliding along walls.
+The code supports four-directional movement (forward, backward, left,
+	right) plus rotation.
 */

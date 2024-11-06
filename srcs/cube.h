@@ -6,7 +6,7 @@
 /*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:21:03 by cafriem           #+#    #+#             */
-/*   Updated: 2024/11/06 14:08:51 by fmaqdasi         ###   ########.fr       */
+/*   Updated: 2024/11/06 19:36:52 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,7 +179,6 @@ void				set_booleans(t_cub3d *cube);
 
 // keypresses:
 void				change_angle(t_cub3d *cube);
-void				change_position(t_cub3d *cube);
 int					move(t_cub3d *cube);
 
 // drawing:
