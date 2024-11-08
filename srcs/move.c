@@ -77,7 +77,7 @@ int	move(t_cub3d *cube)
 			cube->player.p_y += cube->player.p_dy;
 	}
 	check_boundaries(cube);
-	draw_map(cube);
+	render_map(cube);
 	return (0);
 }
 

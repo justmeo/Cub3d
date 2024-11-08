@@ -91,7 +91,7 @@ void	draw_player(t_cub3d *cube3d)
 
 double	deg2rad(double degrees)
 {
-	return (degrees * (PIE / 180.0));
+	return (degrees * (PI_CONST / 180.0));
 }
 
 bool	is_wall(t_cub3d *cube, t_point ray)

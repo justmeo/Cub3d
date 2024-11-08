@@ -24,29 +24,31 @@
 # include <string.h>
 # include <unistd.h>
 
-# define PIE 3.14
-# define DOF 50
+# define PI_CONST 3.14
+# define DEPTH_OF_FIELD 50
+
 # ifdef OSX
 #  include <mlx.h>
-#  define ESC 53
+#  define KEY_ESCAPE 53
 #  define W 13
 #  define A 0
 #  define S 1
 #  define D 2
-#  define LEFT 123
-#  define RIGHT 124
-#  define SHIFT 257
+#  define KEY_LEFT_ARROW 123
+#  define KEY_RIGHT_ARROW 124
+#  define KEY_SHIFT 257
 # else
 #  include "../mlx-linux/mlx.h"
-#  define ESC 65307
+#  define KEY_ESCAPE 65307
 #  define W 119
 #  define A 97
 #  define S 115
 #  define D 100
-#  define LEFT 65361
-#  define RIGHT 65363
-#  define SHIFT 65505
+#  define KEY_LEFT_ARROW 65361
+#  define KEY_RIGHT_ARROW 65363
+#  define KEY_SHIFT 65505
 # endif
+
 
 typedef struct s_data
 {
@@ -145,10 +147,10 @@ typedef struct dda
 	float			x;
 }					t_dda;
 
-void				create_map(t_cub3d *cube);
+void				initialize_map(t_cub3d *cube);
 
 // dda help:
-bool				v_condition(t_point x1, float increase_x, float increase_y,
+bool				v_condition(t_point start, float increase_x, float increase_y,
 						int i);
 bool				v_angle(t_cast *cast);
 
@@ -189,10 +191,10 @@ double				deg2rad(double degrees);
 bool				is_wall(t_cub3d *cube, t_point ray);
 
 // dda:
-void				dda(t_point x1, t_point x2, t_cub3d *cube, int color);
-void				wall_text_h(t_point x1, t_point x2, t_cub3d *cube,
+void				draw_line_dda(t_point start, t_point end, t_cub3d *cube, int color);
+void				render_horizontal_wall_texture(t_point start, t_point end, t_cub3d *cube,
 						t_cast *cast);
-void				wall_text_v(t_point x1, t_point x2, t_cub3d *cube,
+void				wall_text_v(t_point start, t_point end, t_cub3d *cube,
 						t_cast *cast);
 
 // casting:
@@ -218,7 +220,7 @@ void				valid_line(char *string, t_cub3d *cube, char *freeme);
 void				mapread(t_cub3d *cub3d, int start);
 
 // functions:
-void				create_map(t_cub3d *cube);
+void				initialize_map(t_cub3d *cube);
 int					close_x(t_cub3d *cube);
 int					close_esc(int keycode, t_cub3d *cube);
 void				pixel_put(t_data *data, int x, int y, int color);
@@ -226,9 +228,9 @@ void				pixel_put(t_data *data, int x, int y, int color);
 int					keydown(int keycode, t_cub3d *cube);
 int					keyup(int keycode, t_cub3d *cube);
 
-void				draw_map(t_cub3d *cube);
+void				render_map(t_cub3d *cube);
 
-void				dda(t_point x1, t_point x2, t_cub3d *cube, int color);
+void				draw_line_dda(t_point start, t_point end, t_cub3d *cube, int color);
 
 void				free_point(unsigned int **map);
 void				door_or_wall(t_cub3d *cube, t_cast *cast);
@@ -244,5 +246,17 @@ int					ft_double_pointer_counter2(char **dp);
 
 double				deg2rad(double degrees);
 void				init(t_cub3d *cube);
+
+
+// new
+
+void	setup_hooks(t_cub3d *cube);
+void	check_arguments(int argc, char *filename, t_cub3d *cube);
+unsigned int	**load_texture(t_cub3d *cube, char *texture_path, int x, int y);
+void	render_horizontal_wall_texture(t_point start, t_point end, t_cub3d *cube, t_cast *cast);
+bool	is_ray_facing_left(t_cast *cast);
+bool	is_within_vertical_bounds(t_point start, float increment_x, float increment_y, int step);
+void	wall_text_v(t_point start, t_point end, t_cub3d *cube, t_cast *cast);
+void	draw_line_dda(t_point start, t_point end, t_cub3d *cube, int color);
 
 #endif

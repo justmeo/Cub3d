@@ -64,7 +64,7 @@ void	door_or_wall(t_cub3d *cube, t_cast *cast)
 	if (cast->distv <= cast->disth)
 		wall_text_v(cast->height, cast->lines, cube, cast);
 	else
-		wall_text_h(cast->height, cast->lines, cube, cast);
+		render_horizontal_wall_texture(cast->height, cast->lines, cube, cast);
 }
 
 int	get_color(char *line)

@@ -26,9 +26,9 @@ void	cast_n_project(t_cub3d *cube, t_cast *cast)
 	cast->height.x -= 1;
 	cast->lines.x -= 1;
 	if (cube->m && cast->distv <= cast->disth)
-		dda(cast->player, cast->rayv, cube, 0x0055FFFF);
+		draw_line_dda(cast->player, cast->rayv, cube, 0x0055FFFF);
 	else if (cube->m)
-		dda(cast->player, cast->rayh, cube, 0x0055FFFF);
+		draw_line_dda(cast->player, cast->rayh, cube, 0x0055FFFF);
 	cast->r_angle += 0.075;
 	if (cast->r_angle < 0)
 		cast->r_angle += 360;
@@ -80,7 +80,7 @@ void	draw_map2(t_cub3d *cube)
 	}
 }
 
-void	draw_map(t_cub3d *cube)
+void	render_map(t_cub3d *cube)
 {
 	cube->img.img = mlx_new_image(cube->mlx, cube->width, cube->height);
 	cube->img.addr = mlx_get_data_addr(cube->img.img, &cube->img.bpp,

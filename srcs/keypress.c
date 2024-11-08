@@ -34,16 +34,16 @@ int	keydown(int keycode, t_cub3d *cube)
 		cube->dir.s = true;
 	else if (keycode == D)
 		cube->dir.d = true;
-	else if (keycode == LEFT)
+	else if (keycode == KEY_LEFT_ARROW)
 		cube->dir.left = true;
-	else if (keycode == RIGHT)
+	else if (keycode == KEY_RIGHT_ARROW)
 		cube->dir.right = true;
 	return (0);
 }
 
 int	keyup(int keycode, t_cub3d *cube)
 {
-	if (keycode == ESC)
+	if (keycode == KEY_ESCAPE)
 		return (close_esc(keycode, cube));
 	else if (keycode == W)
 		cube->dir.w = false;
@@ -53,9 +53,9 @@ int	keyup(int keycode, t_cub3d *cube)
 		cube->dir.s = false;
 	else if (keycode == D)
 		cube->dir.d = false;
-	else if (keycode == LEFT)
+	else if (keycode == KEY_LEFT_ARROW)
 		cube->dir.left = false;
-	else if (keycode == RIGHT)
+	else if (keycode == KEY_RIGHT_ARROW)
 		cube->dir.right = false;
 	return (0);
 }

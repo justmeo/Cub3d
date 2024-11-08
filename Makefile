@@ -28,6 +28,8 @@ SRCS = $(SRCDIR)/cub3d.c \
 		$(SRCDIR)/move.c \
 		$(SRCDIR)/some_map.c \
 		$(SRCDIR)/window_management.c \
+		$(SRCDIR)/utile_1.c \
+		
 
 CC = cc
 
