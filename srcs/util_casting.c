@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   casting.c                                          :+:      :+:    :+:   */
+/*   util_casting.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 17:50:34 by jadithya          #+#    #+#             */
-/*   Updated: 2024/11/06 12:42:24 by fmaqdasi         ###   ########.fr       */
+/*   Created: 2024/11/09 15:23:47 by fmaqdasi          #+#    #+#             */
+/*   Updated: 2024/11/09 15:23:49 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ void	set_horizontals(t_cub3d *cube, t_cast *cast)
 	{
 		cast->rayh.y = (((int) cube->player.p_y >> 6) << 6) - 0.0001;
 		cast->rayh.x = (cube->player.p_y - cast->rayh.y)
-			* (1 / tan(deg2rad(cast->r_angle))) + cube->player.p_x;
+			* (1 / tan(deg_to_rad(cast->r_angle))) + cube->player.p_x;
 		cast->off.y = -64;
-		cast->off.x = -cast->off.y * (1 / tan(deg2rad(cast->r_angle)));
+		cast->off.x = -cast->off.y * (1 / tan(deg_to_rad(cast->r_angle)));
 	}
 	else if ((int) cast->r_angle == 0 || (int) cast->r_angle == 180)
 	{
@@ -61,9 +61,9 @@ void	set_horizontals(t_cub3d *cube, t_cast *cast)
 	{
 		cast->rayh.y = (((int) cube->player.p_y >> 6) << 6) + 64;
 		cast->rayh.x = ((cube->player.p_y - cast->rayh.y)
-				* (1 / tan(deg2rad(cast->r_angle)))) + cube->player.p_x;
+				* (1 / tan(deg_to_rad(cast->r_angle)))) + cube->player.p_x;
 		cast->off.y = 64;
-		cast->off.x = -cast->off.y * (1 / tan(deg2rad(cast->r_angle)));
+		cast->off.x = -cast->off.y * (1 / tan(deg_to_rad(cast->r_angle)));
 	}
 }
 
@@ -100,9 +100,9 @@ void	set_verticals(t_cub3d *cube, t_cast *cast)
 	{
 		cast->rayv.x = (((int) cube->player.p_x >> 6) << 6) + 64;
 		cast->rayv.y = ((cube->player.p_x - cast->rayv.x)
-				* (tan(deg2rad(cast->r_angle)))) + cube->player.p_y;
+				* (tan(deg_to_rad(cast->r_angle)))) + cube->player.p_y;
 		cast->off.x = 64;
-		cast->off.y = -cast->off.x * (tan(deg2rad(cast->r_angle)));
+		cast->off.y = -cast->off.x * (tan(deg_to_rad(cast->r_angle)));
 		return ;
 	}
 	if ((int) cast->r_angle == 90 || (int) cast->r_angle == 270)
@@ -115,9 +115,9 @@ void	set_verticals(t_cub3d *cube, t_cast *cast)
 	}
 	cast->rayv.x = (((int) cube->player.p_x >> 6) << 6) - 0.0001;
 	cast->rayv.y = ((cube->player.p_x - cast->rayv.x)
-			* (tan(deg2rad(cast->r_angle)))) + cube->player.p_y;
+			* (tan(deg_to_rad(cast->r_angle)))) + cube->player.p_y;
 	cast->off.x = -64;
-	cast->off.y = -cast->off.x * (tan(deg2rad(cast->r_angle)));
+	cast->off.y = -cast->off.x * (tan(deg_to_rad(cast->r_angle)));
 }
 
 void	set_rayv(t_cub3d *cube, t_cast *cast)

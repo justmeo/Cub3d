@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_more.c                                         :+:      :+:    :+:   */
+/*   util_map_parscing.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 17:31:25 by jadithya          #+#    #+#             */
-/*   Updated: 2024/11/06 12:52:18 by fmaqdasi         ###   ########.fr       */
+/*   Created: 2024/11/09 15:24:10 by fmaqdasi          #+#    #+#             */
+/*   Updated: 2024/11/09 15:24:13 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
+//to be changed
 int	player_check(t_cub3d *cub3d, int c)
 {
 	int	c1;
@@ -28,6 +29,7 @@ int	player_check(t_cub3d *cub3d, int c)
 	return (c1 - 1);
 }
 
+//to be changed
 void	player_info(t_cub3d *cub3d)
 {
 	char	*str;
@@ -56,6 +58,7 @@ void	player_info(t_cub3d *cub3d)
 		error(cub3d, 3);
 }
 
+//to be changed
 int	texture_parse2(t_cub3d *cub3d, char *line, int c)
 {
 	if (ft_strncmp(line, "NO", 2) == 0)
@@ -77,6 +80,7 @@ int	texture_parse2(t_cub3d *cub3d, char *line, int c)
 	return (0);
 }
 
+//to be changed
 void	nuggets(t_cub3d *cube)
 {
 	t_dir	bol;
@@ -99,6 +103,7 @@ void	nuggets(t_cub3d *cube)
 		error(cube, 5);
 }
 
+//to be changed
 void	texture_parse(t_cub3d *cub3d)
 {
 	int		c;
@@ -106,14 +111,14 @@ void	texture_parse(t_cub3d *cub3d)
 
 	c = -1;
 	while (cub3d->map.file_map[++c]
-		&& ft_double_pointer_counter2(cub3d->map.file_map) > c)
+		&& line_counter(cub3d->map.file_map) > c)
 	{
 		line = ft_strtrim(cub3d->map.file_map[c], " ");
 		if (texture_parse2(cub3d, line, c) == 1)
 			break ;
 		free (line);
 	}
-	if (ft_double_pointer_counter2(cub3d->map.file_map) <= c)
+	if (line_counter(cub3d->map.file_map) <= c)
 	{
 		close_free(cub3d);
 		exit (1);
@@ -125,30 +130,3 @@ void	texture_parse(t_cub3d *cub3d)
 	mapread(cub3d, c);
 	nuggets(cub3d);
 }
-/*
-This code file contains several functions related to map parsing and player positioning in a 3D raycasting game. Let's break down each function:
-player_check:
-Counts the number of player start positions (N, S, E, W) in a single line of the map.
-Returns the count minus one (to allow for a single player position).
-player_info:
-Scans the entire map to find the player's starting position and orientation.
-Sets the player's row and column in the map.
-Ensures there's only one player start position in the entire map.
-texture_parse2:
-Parses a single line of the map file for texture and color information.
-Sets texture paths for North, South, East, and West walls.
-Parses floor and ceiling colors.
-nuggets:
-Checks if all required texture directions (NO, SO, EA, WE) are present in the map file.
-If any are missing, it triggers an error.
-texture_parse:
-Main function for parsing texture and color information from the map file.
-Calls texture_parse2 for each line until it reaches the actual map data.
-Verifies that ceiling and floor colors are properly set.
-Calls mapread to process the actual map data.
-Calls nuggets to ensure all required textures are present.
-Key points:
-The code ensures that there's exactly one player start position in the map.
-It parses texture paths and color information for the game environment.
-There are checks to ensure all required map elements are present and valid.
-*/

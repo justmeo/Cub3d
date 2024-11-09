@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_valid.c                                        :+:      :+:    :+:   */
+/*   util_map_parscing2.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 17:29:37 by jadithya          #+#    #+#             */
-/*   Updated: 2024/11/06 12:56:16 by fmaqdasi         ###   ########.fr       */
+/*   Created: 2024/11/09 15:24:18 by fmaqdasi          #+#    #+#             */
+/*   Updated: 2024/11/09 15:27:00 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-void	check_valid(t_cub3d *cub3d, int row, int colom)
-{
-	check_updown(cub3d, row, colom);
-	check_leftright(cub3d, row, colom);
-}
-
+//to be changed
 void	map_checker(t_cub3d *cub3d)
 {
 	int	row;
@@ -30,13 +25,17 @@ void	map_checker(t_cub3d *cub3d)
 		while (cub3d->map.points[row][colom])
 		{
 			if (cub3d->map.points[row][colom] == '0')
-				check_valid(cub3d, row, colom);
+			{
+				check_updown(cub3d, row, colom);
+				check_leftright(cub3d, row, colom);
+			}
 			colom++;
 		}
 		row++;
 	}
 }
 
+//to be changed
 void	map_size(t_cub3d *cub3d)
 {
 	int	c;
@@ -55,6 +54,7 @@ void	map_size(t_cub3d *cub3d)
 	cub3d->map.height = c;
 }
 
+//to be changed
 char	*get_pl(t_cub3d *cub3d, int c, char *str)
 {
 	cub3d->player.p_angle = -1;
@@ -84,6 +84,7 @@ char	*get_pl(t_cub3d *cub3d, int c, char *str)
 	return (str);
 }
 
+//to be changed
 void	check_player_exist(t_cub3d *cube)
 {
 	bool	flag;
@@ -104,27 +105,31 @@ void	check_player_exist(t_cub3d *cube)
 		error(cube, 3);
 }
 
-/*
-This code file contains functions for map validation and player positioning in a 3D raycasting game. Let's break down each function:
-check_valid:
-Calls check_updown and check_leftright to validate a specific position on the map.
-map_checker:
-Iterates through the entire map.
-Calls check_valid for each '0' (open space) in the map to ensure it's properly enclosed.
-map_size:
-Determines the width and height of the map.
-Width is set to the length of the longest row.
-Height is the number of rows in the map.
-get_pl:
-Determines the player's starting position and angle based on the character in the map ('N', 'S', 'E', 'W').
-Sets the player's angle accordingly (270 for 'N', 90 for 'S', 180 for 'E', 0 for 'W').
-Checks for multiple player positions and triggers an error if found.
-check_player_exist:
-Verifies that a player starting position exists in the map.
-Triggers an error if no player position is found.
-Key points:
-The map validation ensures that all open spaces are enclosed by walls.
-The player's starting position and direction are determined from the map.
-The code assumes a specific angle convention (0 is West, 90 is South, etc.).
-Error handling is done by calling an error function with specific error codes.
-*/
+//to be changed
+int	get_color(char *line)
+{
+	char	**spl;
+	int		c;
+	int		ret;
+
+	spl = ft_split(line, ',');
+	if (line)
+		free(line);
+	c = 0;
+	while (spl[c])
+		c++;
+	if (c != 3)
+		return (-1);
+	if ((spl[0] && spl[1] && spl[2])
+		&& (check_digit(ft_strtrim(spl[0], " ")) == 1)
+		&& (check_digit(ft_strtrim(spl[1], " ")) == 1)
+		&& (check_digit(ft_strtrim(spl[2], " ")) == 1))
+		ret = create_trgb(1, ft_atoi(spl[0]), ft_atoi(spl[1]), ft_atoi(spl[2]));
+	else
+	{
+		free_split(spl);
+		return (-1);
+	}
+	free_split(spl);
+	return (ret);
+}

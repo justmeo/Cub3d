@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   drawing.c                                          :+:      :+:    :+:   */
+/*   util_map_render2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 17:43:50 by jadithya          #+#    #+#             */
-/*   Updated: 2024/11/06 13:40:11 by fmaqdasi         ###   ########.fr       */
+/*   Created: 2024/11/09 15:24:40 by fmaqdasi          #+#    #+#             */
+/*   Updated: 2024/11/09 15:24:42 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,42 +88,3 @@ void	draw_player(t_cub3d *cube3d)
 	cube3d->player.p_dy += cube3d->player.p_y;
 	draw_angle(cube3d);
 }
-
-double	deg2rad(double degrees)
-{
-	return (degrees * (PI_CONST / 180.0));
-}
-
-bool	is_wall(t_cub3d *cube, t_point ray)
-{
-	if (cube->map.points[(int)(ray.y / 16)][(int)(ray.x / 16)] == '1')
-		return (true);
-	return (false);
-}
-
-
-/*
-This code file contains several functions related to drawing and rendering in a 3D raycasting engine. Let's break down each function:
-draw_square:
-Draws a square on the screen, typically used for rendering map tiles.
-Each square is 16x16 pixels.
-The border of the square is drawn in a light gray color (0x00DDDDDD).
-draw_angle:
-Draws a line representing the player's viewing angle.
-Uses a simplified DDA algorithm to draw the line.
-The line is drawn in red (0x00FF0000).
-draw_player:
-Draws the player as a 3x3 pixel square on the minimap.
-The player is represented in red (0x00FF0000).
-Also calls draw_angle to show the player's viewing direction.
-deg2rad:
-Converts degrees to radians.
-Uses a constant PIE (likely defined as π elsewhere in the code).
-is_wall:
-Checks if a given point (ray) intersects with a wall in the map.
-Returns true if the map tile at the given coordinates is '1' (representing a wall).
-Key points:
-The code uses a scale factor of 4 for the minimap (dividing coordinates by 4).
-Map tiles are represented as 16x16 pixel squares.
-The player's position and direction are visualized on a minimap.
-*/
