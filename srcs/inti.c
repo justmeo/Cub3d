@@ -6,7 +6,7 @@
 /*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 15:23:29 by fmaqdasi          #+#    #+#             */
-/*   Updated: 2024/11/11 19:39:22 by fmaqdasi         ###   ########.fr       */
+/*   Updated: 2024/11/11 20:08:40 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,12 @@ void	init(t_cub3d *cube)
 {
 	cube->map.points = NULL;
 	cube->map.file_map = NULL;
-	cube->map.t_n = NULL;
-	cube->map.t_s = NULL;
-	cube->map.t_e = NULL;
-	cube->map.t_w = NULL;
-	cube->map.i_n = NULL;
-	cube->map.i_s = NULL;
-	cube->map.i_e = NULL;
-	cube->map.i_w = NULL;
+	cube->map.file_n = NULL;
+	cube->map.file_s = NULL;
+	cube->map.file_e = NULL;
+	cube->map.file_w = NULL;
+	cube->map.texture_n = NULL;
+	cube->map.texture_s = NULL;
+	cube->map.texture_e = NULL;
+	cube->map.texture_w = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 15:23:47 by fmaqdasi          #+#    #+#             */
-/*   Updated: 2024/11/11 19:52:08 by fmaqdasi         ###   ########.fr       */
+/*   Updated: 2024/11/11 20:10:37 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	draw_floor_ceiling(t_cub3d *cube)
 	end.y = 0;
 	while (end.y < 400)
 	{
-		draw_line_dda(start, end, cube, cube->map.c);
+		draw_line_dda(start, end, cube, cube->map.ceiling);
 		end.y++;
 		start.y++;
 	}
@@ -33,7 +33,7 @@ void	draw_floor_ceiling(t_cub3d *cube)
 	end.y = 400;
 	while (end.y < 800)
 	{
-		draw_line_dda(start, end, cube, cube->map.f);
+		draw_line_dda(start, end, cube, cube->map.floor);
 		end.y++;
 		start.y++;
 	}

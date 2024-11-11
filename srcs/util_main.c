@@ -17,18 +17,18 @@
 
 void	load_textures(t_cub3d *cube)
 {
-	if (access(cube->map.t_n, F_OK | R_OK) == -1 || access(cube->map.t_s,
-			F_OK | R_OK) == -1 || access(cube->map.t_w, F_OK | R_OK) == -1
-		|| access(cube->map.t_e, F_OK | R_OK) == -1)
+	if (access(cube->map.file_n, F_OK | R_OK) == -1 || access(cube->map.file_s,
+			F_OK | R_OK) == -1 || access(cube->map.file_w, F_OK | R_OK) == -1
+		|| access(cube->map.file_e, F_OK | R_OK) == -1)
 	{
 		mlx_destroy_window(cube->mlx, cube->mlx_window);
 		free(cube->mlx);
 		error(cube, 5);
 	}
-	cube->map.i_n = load_texture(cube, cube->map.t_n, 64, 64);
-	cube->map.i_s = load_texture(cube, cube->map.t_s, 64, 64);
-	cube->map.i_e = load_texture(cube, cube->map.t_e, 64, 64);
-	cube->map.i_w = load_texture(cube, cube->map.t_w, 64, 64);
+	cube->map.texture_n = load_texture(cube, cube->map.file_n, 64, 64);
+	cube->map.texture_s = load_texture(cube, cube->map.file_s, 64, 64);
+	cube->map.texture_e = load_texture(cube, cube->map.file_e, 64, 64);
+	cube->map.texture_w = load_texture(cube, cube->map.file_w, 64, 64);
 }
 
 void	initialize_map(t_cub3d *cube)

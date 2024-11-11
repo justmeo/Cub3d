@@ -6,7 +6,7 @@
 /*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 15:24:47 by fmaqdasi          #+#    #+#             */
-/*   Updated: 2024/11/11 19:48:30 by fmaqdasi         ###   ########.fr       */
+/*   Updated: 2024/11/11 20:05:57 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ bool	is_ray_facing_left(t_cast *cast)
 	return (false);
 }
 
-//increase x
-//increase y
-//increase t
+// increase x
+// increase y
+// increase t
 void	wall_text_v(t_point start, t_point end, t_cub3d *cube, t_cast *cast)
 {
 	int		i;
@@ -66,11 +66,11 @@ void	wall_text_v(t_point start, t_point end, t_cub3d *cube, t_cast *cast)
 		if (is_ray_facing_left(cast) && is_within_vertical_bounds(start,
 				increase[0], increase[1], i))
 			pixel_put(cube, start.x + (increase[0] * i), start.y + (increase[1]
-					* i), cube->map.i_e[(int)fabsf(increase[2]
+					* i), cube->map.texture_e[(int)fabsf(increase[2]
 					* i)][(int)(cast->rayv.y * 4) % 64]);
 		else
 			pixel_put(cube, start.x + (increase[0] * i), start.y + (increase[1]
-					* i), cube->map.i_w[(int)fabsf(increase[2]
+					* i), cube->map.texture_w[(int)fabsf(increase[2]
 					* i)][(int)(cast->rayv.y * 4) % 64]);
 	}
 }
@@ -96,12 +96,12 @@ void	render_horizontal_wall_texture(t_point start, t_point end,
 	{
 		if (cast->r_angle > 0 && cast->r_angle < 180)
 			pixel_put(cube, start.x + (x * (i - 1)), start.y + (y * (i - 1)),
-				cube->map.i_s[(int)fabsf(t * (i - 1))][(int)(cast->rayh.x * 4)
-				% 64]);
+				cube->map.texture_s[(int)fabsf(t * (i - 1))][(int)(cast->rayh.x
+					* 4) % 64]);
 		else
 			pixel_put(cube, start.x + (x * (i - 1)), start.y + (y * (i - 1)),
-				cube->map.i_n[(int)fabsf(t * (i - 1))][(int)(cast->rayh.x * 4)
-				% 64]);
+				cube->map.texture_n[(int)fabsf(t * (i - 1))][(int)(cast->rayh.x
+					* 4) % 64]);
 	}
 }
 

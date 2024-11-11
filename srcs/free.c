@@ -6,7 +6,7 @@
 /*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 15:23:14 by fmaqdasi          #+#    #+#             */
-/*   Updated: 2024/11/09 15:23:17 by fmaqdasi         ###   ########.fr       */
+/*   Updated: 2024/11/11 20:05:13 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ void	free_point(unsigned int **map)
 
 void	close_free(t_cub3d *cube)
 {
-	if (cube->map.i_e)
-		free_point(cube->map.i_e);
-	if (cube->map.i_w)
-		free_point(cube->map.i_w);
-	if (cube->map.i_n)
-		free_point(cube->map.i_n);
-	if (cube->map.i_s)
-		free_point(cube->map.i_s);
+	if (cube->map.texture_e)
+		free_point(cube->map.texture_e);
+	if (cube->map.texture_w)
+		free_point(cube->map.texture_w);
+	if (cube->map.texture_n)
+		free_point(cube->map.texture_n);
+	if (cube->map.texture_s)
+		free_point(cube->map.texture_s);
 	if (cube->map.points)
 		free_split(cube->map.points);
 	if (cube->map.file_map)

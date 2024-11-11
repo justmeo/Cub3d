@@ -6,7 +6,7 @@
 /*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 15:24:10 by fmaqdasi          #+#    #+#             */
-/*   Updated: 2024/11/11 19:06:22 by fmaqdasi         ###   ########.fr       */
+/*   Updated: 2024/11/11 20:10:01 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,18 +62,18 @@ void	player_info(t_cub3d *cub3d)
 int	texture_parse2(t_cub3d *cub3d, char *line, int c)
 {
 	if (ft_strncmp(line, "NO", 2) == 0)
-		cub3d->map.t_n = ft_strchr(cub3d->map.file_map[c], '.');
+		cub3d->map.file_n = ft_strchr(cub3d->map.file_map[c], '.');
 	else if (!ft_strncmp(line, "SO", 2))
-		cub3d->map.t_s = ft_strchr(cub3d->map.file_map[c], '.');
+		cub3d->map.file_s = ft_strchr(cub3d->map.file_map[c], '.');
 	else if (!ft_strncmp(line, "EA", 2))
-		cub3d->map.t_e = ft_strchr(cub3d->map.file_map[c], '.');
+		cub3d->map.file_e = ft_strchr(cub3d->map.file_map[c], '.');
 	else if (!ft_strncmp(line, "WE", 2))
-		cub3d->map.t_w = ft_strchr(cub3d->map.file_map[c], '.');
+		cub3d->map.file_w = ft_strchr(cub3d->map.file_map[c], '.');
 	else if (!ft_strncmp(line, "F", 1))
-		cub3d->map.f = get_color(ft_substr((cub3d->map.file_map[c]), 1,
+		cub3d->map.floor = get_color(ft_substr((cub3d->map.file_map[c]), 1,
 					ft_strlen(cub3d->map.file_map[c])));
 	else if (!ft_strncmp(line, "C", 1))
-		cub3d->map.c = get_color(ft_substr((cub3d->map.file_map[c]), 1,
+		cub3d->map.ceiling = get_color(ft_substr((cub3d->map.file_map[c]), 1,
 					ft_strlen(cub3d->map.file_map[c])));
 	else
 		return (1);
@@ -127,7 +127,7 @@ void	texture_parse(t_cub3d *cub3d)
 	}
 	if (line)
 		free(line);
-	if (cub3d->map.c == -1 || cub3d->map.f == -1)
+	if (cub3d->map.ceiling == -1 || cub3d->map.floor == -1)
 		error(cub3d, 4);
 	mapread(cub3d, c);
 	nuggets(cub3d);

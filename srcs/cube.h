@@ -6,7 +6,7 @@
 /*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 15:23:07 by fmaqdasi          #+#    #+#             */
-/*   Updated: 2024/11/11 19:52:36 by fmaqdasi         ###   ########.fr       */
+/*   Updated: 2024/11/11 20:12:08 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,25 +49,24 @@
 #  define KEY_SHIFT 65505
 # endif
 
-//to have some renames
 typedef struct map
 {
 	char			**points;
 	char			**file_map;
 	int				width;
 	int				height;
-	char			*t_n;
-	char			*t_s;
-	char			*t_e;
-	char			*t_w;
-	unsigned int	**i_n;
-	unsigned int	**i_s;
-	unsigned int	**i_e;
-	unsigned int	**i_w;
+	unsigned int	**texture_n;
+	unsigned int	**texture_s;
+	unsigned int	**texture_e;
+	unsigned int	**texture_w;
+	char			*file_n;
+	char			*file_s;
+	char			*file_e;
+	char			*file_w;
 	int				p_row;
 	int				p_colom;
-	int				f;
-	int				c;
+	int				floor;
+	int				ceiling;
 }					t_map;
 
 typedef struct cub3d
@@ -103,7 +102,6 @@ typedef struct point
 	float			y;
 }					t_point;
 
-//to be renamed
 typedef struct casting
 {
 	int				rays;
@@ -126,7 +124,6 @@ void				initialize_map(t_cub3d *cube);
 bool				v_condition(t_point start, float increase_x,
 						float increase_y, int i);
 bool				v_angle(t_cast *cast);
-int					mouse(int x, int y, t_cub3d *cube);
 int					file_check(char *string);
 char				*readfile(int fd);
 int					create_trgb(int t, int r, int g, int b);
