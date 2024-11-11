@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Util_math_dda.c                                    :+:      :+:    :+:   */
+/*   util_math_dda.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 15:24:47 by fmaqdasi          #+#    #+#             */
-/*   Updated: 2024/11/09 15:28:49 by fmaqdasi         ###   ########.fr       */
+/*   Updated: 2024/11/11 15:59:24 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,10 @@ void	draw_line_dda(t_point start, t_point end, t_cub3d *cube, int color)
 		increase_x = (end.x - start.x) / steps;
 		increase_y = (end.y - start.y) / steps;
 	}
-
 	i = 1;
 	while (i++ <= steps)
-		pixel_put(&cube->img, start.x + (increase_x * (i - 1)),
-			start.y + (increase_y * (i - 1)),
-			color);
+		pixel_put(cube, start.x + (increase_x * (i - 1)), start.y
+			+ (increase_y * (i - 1)), color);
 }
 
 bool	is_ray_facing_left(t_cast *cast)
@@ -64,51 +62,54 @@ void	wall_text_v(t_point start, t_point end, t_cub3d *cube, t_cast *cast)
 	i = -1;
 	while (++i < steps)
 	{
-		if (is_ray_facing_left(cast) && is_within_vertical_bounds(start, increase_x, increase_y, i))
-			pixel_put(&cube->img, start.x + (increase_x * i),
-				start.y + (increase_y * i), cube->map.i_e[
-				(int)fabsf(increase_t * i)][(int)(cast->rayv.y * 4) % 64]);
+		if (is_ray_facing_left(cast) && is_within_vertical_bounds(start,
+				increase_x, increase_y, i))
+			pixel_put(cube, start.x + (increase_x * i), start.y
+				+ (increase_y * i), cube->map.i_e[(int)fabsf(increase_t
+					* i)][(int)(cast->rayv.y * 4) % 64]);
 		else
-			pixel_put(&cube->img, start.x + (increase_x * i),
-				start.y + (increase_y * i), cube->map.i_w[
-				(int)fabsf(increase_t * i)][(int)(cast->rayv.y * 4) % 64]);
+			pixel_put(cube, start.x + (increase_x * i), start.y
+				+ (increase_y * i), cube->map.i_w[(int)fabsf(increase_t
+					* i)][(int)(cast->rayv.y * 4) % 64]);
 	}
 }
 
-void	render_horizontal_wall_texture(t_point start, t_point end, t_cub3d *cube, t_cast *cast)
+void	render_horizontal_wall_texture(t_point start, t_point end,
+		t_cub3d *cube, t_cast *cast)
 {
-	t_dda	h;
+	int		i;
+	float	s;
+	float	t;
+	float	y;
+	float	x;
 
 	if (fabsf(end.x - start.x) > fabsf(end.y - start.y))
-		h.s = fabsf(end.x - start.x);
+		s = fabsf(end.x - start.x);
 	else
-		h.s = fabsf(end.y - start.y);
-
-	h.x = (end.x - start.x) / h.s;
-	h.y = (end.y - start.y) / h.s;
-	h.t = 64 / h.s;
-	h.i = 0;
-
-	while (h.i++ <= h.s)
+		s = fabsf(end.y - start.y);
+	x = (end.x - start.x) / s;
+	y = (end.y - start.y) / s;
+	t = 64 / s;
+	i = 0;
+	while (i++ <= s)
 	{
 		if (cast->r_angle > 0 && cast->r_angle < 180)
-			pixel_put(&cube->img, start.x + (h.x * (h.i - 1)),
-				start.y + (h.y * (h.i - 1)), 
-				cube->map.i_s[(int)fabsf(h.t * (h.i - 1))]
-				[(int)(cast->rayh.x * 4) % 64]);
+			pixel_put(cube, start.x + (x * (i - 1)), start.y + (y * (i
+						- 1)), cube->map.i_s[(int)fabsf(t * (i
+						- 1))][(int)(cast->rayh.x * 4) % 64]);
 		else
-			pixel_put(&cube->img, start.x + (h.x * (h.i - 1)),
-				start.y + (h.y * (h.i - 1)), 
-				cube->map.i_n[(int)fabsf(h.t * (h.i - 1))]
-				[(int)(cast->rayh.x * 4) % 64]);
+			pixel_put(cube, start.x + (x * (i - 1)), start.y + (y * (i
+						- 1)), cube->map.i_n[(int)fabsf(t * (i
+						- 1))][(int)(cast->rayh.x * 4) % 64]);
 	}
 }
 
-bool	is_within_vertical_bounds(t_point start, float increment_x, float increment_y, int step)
+bool	is_within_vertical_bounds(t_point start, float increment_x,
+		float increment_y, int step)
 {
-	if (start.x + (increment_x * step) >= 0 && start.x + (increment_x * step) < 800
-		&& start.y + (increment_y * step) >= 0 && start.y + (increment_y * step) < 800)
+	if (start.x + (increment_x * step) >= 0 && start.x + (increment_x
+			* step) < 800 && start.y + (increment_y * step) >= 0 && start.y
+		+ (increment_y * step) < 800)
 		return (true);
 	return (false);
 }
-

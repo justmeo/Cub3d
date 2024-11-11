@@ -6,19 +6,19 @@
 /*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 15:25:00 by fmaqdasi          #+#    #+#             */
-/*   Updated: 2024/11/09 15:25:01 by fmaqdasi         ###   ########.fr       */
+/*   Updated: 2024/11/11 15:50:24 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-void	pixel_put(t_data *data, int x, int y, int color)
+void	pixel_put(t_cub3d *cube, int x, int y, int color)
 {
 	char	*dst;
 
 	if ((x >= 0 && y >= 0) && (x < 800 && y < 800))
 	{
-		dst = data->addr + (y * data->line_length + x * (data->bpp / 8));
+		dst = cube->addr + (y * cube->line_length + x * (cube->bpp / 8));
 		*(unsigned int *)dst = color;
 	}
 }

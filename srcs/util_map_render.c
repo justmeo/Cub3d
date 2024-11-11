@@ -6,7 +6,7 @@
 /*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 15:24:35 by fmaqdasi          #+#    #+#             */
-/*   Updated: 2024/11/09 15:24:36 by fmaqdasi         ###   ########.fr       */
+/*   Updated: 2024/11/11 15:53:58 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,14 +86,14 @@ void	draw_map2(t_cub3d *cube)
 //to be changed
 void	render_map(t_cub3d *cube)
 {
-	cube->img.img = mlx_new_image(cube->mlx, cube->width, cube->height);
-	cube->img.addr = mlx_get_data_addr(cube->img.img, &cube->img.bpp,
-			&cube->img.line_length, &cube->img.endian);
+	cube->img = mlx_new_image(cube->mlx, cube->width, cube->height);
+	cube->addr = mlx_get_data_addr(cube->img, &cube->bpp,
+			&cube->line_length, &cube->endian);
 	draw_floor_ceiling(cube);
 	draw_rays(cube);
 	draw_map2(cube);
 	if (cube->m)
 		draw_player(cube);
-	mlx_put_image_to_window(cube->mlx, cube->mlx_window, cube->img.img, 0, 0);
-	mlx_destroy_image(cube->mlx, cube->img.img);
+	mlx_put_image_to_window(cube->mlx, cube->mlx_window, cube->img, 0, 0);
+	mlx_destroy_image(cube->mlx, cube->img);
 }

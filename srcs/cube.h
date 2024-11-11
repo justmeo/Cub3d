@@ -6,7 +6,7 @@
 /*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 15:23:07 by fmaqdasi          #+#    #+#             */
-/*   Updated: 2024/11/09 15:23:10 by fmaqdasi         ###   ########.fr       */
+/*   Updated: 2024/11/11 16:14:36 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,6 @@
 #  define KEY_SHIFT 65505
 # endif
 
-typedef struct s_data
-{
-	void			*img;
-	char			*addr;
-	int				bpp;
-	int				line_length;
-	int				endian;
-	int				width;
-	int				height;
-}					t_data;
-
 typedef struct map
 {
 	char			**points;
@@ -101,11 +90,15 @@ typedef struct player
 
 typedef struct cub3d
 {
+	void			*img;
+	char			*addr;
+	int				bpp;
+	int				line_length;
+	int				endian;
 	int				width;
 	int				height;
 	void			*mlx;
 	void			*mlx_window;
-	t_data			img;
 	t_map			map;
 	t_player		player;
 	t_dir			dir;
@@ -137,23 +130,10 @@ typedef struct casting
 	t_point			height;
 }					t_cast;
 
-typedef struct dda
-{
-	int				i;
-	float			s;
-	float			t;
-	float			y;
-	float			x;
-}					t_dda;
-
 void				initialize_map(t_cub3d *cube);
-
-// dda help:
 bool				v_condition(t_point start, float increase_x,
 						float increase_y, int i);
 bool				v_angle(t_cast *cast);
-
-// some map:
 int					mouse(int x, int y, t_cub3d *cube);
 int					file_check(char *string);
 
@@ -220,7 +200,7 @@ void				mapread(t_cub3d *cub3d, int start);
 void				initialize_map(t_cub3d *cube);
 int					exit_x(t_cub3d *cube);
 int					exit_esc(int keycode, t_cub3d *cube);
-void				pixel_put(t_data *data, int x, int y, int color);
+void				pixel_put(t_cub3d *cube, int x, int y, int color);
 
 int					keydown(int keycode, t_cub3d *cube);
 int					keyup(int keycode, t_cub3d *cube);
