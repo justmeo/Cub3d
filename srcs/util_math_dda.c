@@ -6,7 +6,7 @@
 /*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 15:24:47 by fmaqdasi          #+#    #+#             */
-/*   Updated: 2024/11/11 15:59:24 by fmaqdasi         ###   ########.fr       */
+/*   Updated: 2024/11/11 19:48:30 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	draw_line_dda(t_point start, t_point end, t_cub3d *cube, int color)
 	}
 	i = 1;
 	while (i++ <= steps)
-		pixel_put(cube, start.x + (increase_x * (i - 1)), start.y
-			+ (increase_y * (i - 1)), color);
+		pixel_put(cube, start.x + (increase_x * (i - 1)), start.y + (increase_y
+				* (i - 1)), color);
 }
 
 bool	is_ray_facing_left(t_cast *cast)
@@ -44,32 +44,33 @@ bool	is_ray_facing_left(t_cast *cast)
 	return (false);
 }
 
+//increase x
+//increase y
+//increase t
 void	wall_text_v(t_point start, t_point end, t_cub3d *cube, t_cast *cast)
 {
 	int		i;
 	float	steps;
-	float	increase_x;
-	float	increase_y;
-	float	increase_t;
+	float	increase[3];
 
 	if (fabsf(end.x - start.x) > fabsf(end.y - start.y))
 		steps = fabsf(end.x - start.x);
 	else
 		steps = fabsf(end.y - start.y);
-	increase_x = (end.x - start.x) / steps;
-	increase_y = (end.y - start.y) / steps;
-	increase_t = 64 / steps;
+	increase[0] = (end.x - start.x) / steps;
+	increase[1] = (end.y - start.y) / steps;
+	increase[2] = 64 / steps;
 	i = -1;
 	while (++i < steps)
 	{
 		if (is_ray_facing_left(cast) && is_within_vertical_bounds(start,
-				increase_x, increase_y, i))
-			pixel_put(cube, start.x + (increase_x * i), start.y
-				+ (increase_y * i), cube->map.i_e[(int)fabsf(increase_t
+				increase[0], increase[1], i))
+			pixel_put(cube, start.x + (increase[0] * i), start.y + (increase[1]
+					* i), cube->map.i_e[(int)fabsf(increase[2]
 					* i)][(int)(cast->rayv.y * 4) % 64]);
 		else
-			pixel_put(cube, start.x + (increase_x * i), start.y
-				+ (increase_y * i), cube->map.i_w[(int)fabsf(increase_t
+			pixel_put(cube, start.x + (increase[0] * i), start.y + (increase[1]
+					* i), cube->map.i_w[(int)fabsf(increase[2]
 					* i)][(int)(cast->rayv.y * 4) % 64]);
 	}
 }
@@ -94,13 +95,13 @@ void	render_horizontal_wall_texture(t_point start, t_point end,
 	while (i++ <= s)
 	{
 		if (cast->r_angle > 0 && cast->r_angle < 180)
-			pixel_put(cube, start.x + (x * (i - 1)), start.y + (y * (i
-						- 1)), cube->map.i_s[(int)fabsf(t * (i
-						- 1))][(int)(cast->rayh.x * 4) % 64]);
+			pixel_put(cube, start.x + (x * (i - 1)), start.y + (y * (i - 1)),
+				cube->map.i_s[(int)fabsf(t * (i - 1))][(int)(cast->rayh.x * 4)
+				% 64]);
 		else
-			pixel_put(cube, start.x + (x * (i - 1)), start.y + (y * (i
-						- 1)), cube->map.i_n[(int)fabsf(t * (i
-						- 1))][(int)(cast->rayh.x * 4) % 64]);
+			pixel_put(cube, start.x + (x * (i - 1)), start.y + (y * (i - 1)),
+				cube->map.i_n[(int)fabsf(t * (i - 1))][(int)(cast->rayh.x * 4)
+				% 64]);
 	}
 }
 

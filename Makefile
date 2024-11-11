@@ -6,7 +6,7 @@
 #    By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/09 15:33:23 by fmaqdasi          #+#    #+#              #
-#    Updated: 2024/11/09 15:33:25 by fmaqdasi         ###   ########.fr        #
+#    Updated: 2024/11/11 19:39:13 by fmaqdasi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,6 @@ NAME = cub3D
 
 SRCS = $(SRCDIR)/cub3d.c \
 		$(SRCDIR)/util_map_render.c \
-		$(SRCDIR)/util_map_render2.c \
 		$(SRCDIR)/movement.c \
 		$(SRCDIR)/movement2.c \
 		$(SRCDIR)/util_main.c \

@@ -6,13 +6,13 @@
 /*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 15:24:10 by fmaqdasi          #+#    #+#             */
-/*   Updated: 2024/11/09 15:24:13 by fmaqdasi         ###   ########.fr       */
+/*   Updated: 2024/11/11 19:06:22 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-//to be changed
+// to be changed
 int	player_check(t_cub3d *cub3d, int c)
 {
 	int	c1;
@@ -29,7 +29,7 @@ int	player_check(t_cub3d *cub3d, int c)
 	return (c1 - 1);
 }
 
-//to be changed
+// to be changed
 void	player_info(t_cub3d *cub3d)
 {
 	char	*str;
@@ -58,7 +58,7 @@ void	player_info(t_cub3d *cub3d)
 		error(cub3d, 3);
 }
 
-//to be changed
+// to be changed
 int	texture_parse2(t_cub3d *cub3d, char *line, int c)
 {
 	if (ft_strncmp(line, "NO", 2) == 0)
@@ -80,51 +80,53 @@ int	texture_parse2(t_cub3d *cub3d, char *line, int c)
 	return (0);
 }
 
-//to be changed
+// to be changed
 void	nuggets(t_cub3d *cube)
 {
-	t_dir	bol;
+	bool	w;
+	bool	s;
+	bool	a;
+	bool	d;
 	int		c;
 
 	c = 0;
-	bol.w = false;
-	bol.a = false;
-	bol.s = false;
-	bol.d = false;
+	w = false;
+	a = false;
+	s = false;
+	d = false;
 	while (cube->map.file_map[c] && c < 4)
 	{
-		bol.w = (bol.w || (ft_strncmp(cube->map.file_map[c], "NO", 2) == 0));
-		bol.a = (bol.a || (ft_strncmp(cube->map.file_map[c], "SO", 2) == 0));
-		bol.s = (bol.s || (ft_strncmp(cube->map.file_map[c], "EA", 2) == 0));
-		bol.d = (bol.d || (ft_strncmp(cube->map.file_map[c], "WE", 2) == 0));
+		w = (w || (ft_strncmp(cube->map.file_map[c], "NO", 2) == 0));
+		a = (a || (ft_strncmp(cube->map.file_map[c], "SO", 2) == 0));
+		s = (s || (ft_strncmp(cube->map.file_map[c], "EA", 2) == 0));
+		d = (d || (ft_strncmp(cube->map.file_map[c], "WE", 2) == 0));
 		c++;
 	}
-	if (!bol.w || !bol.a || !bol.s || !bol.d)
+	if (!w || !a || !s || !d)
 		error(cube, 5);
 }
 
-//to be changed
+// to be changed
 void	texture_parse(t_cub3d *cub3d)
 {
 	int		c;
 	char	*line;
 
 	c = -1;
-	while (cub3d->map.file_map[++c]
-		&& line_counter(cub3d->map.file_map) > c)
+	while (cub3d->map.file_map[++c] && line_counter(cub3d->map.file_map) > c)
 	{
 		line = ft_strtrim(cub3d->map.file_map[c], " ");
 		if (texture_parse2(cub3d, line, c) == 1)
 			break ;
-		free (line);
+		free(line);
 	}
 	if (line_counter(cub3d->map.file_map) <= c)
 	{
 		close_free(cub3d);
-		exit (1);
+		exit(1);
 	}
 	if (line)
-		free (line);
+		free(line);
 	if (cub3d->map.c == -1 || cub3d->map.f == -1)
 		error(cub3d, 4);
 	mapread(cub3d, c);

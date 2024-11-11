@@ -6,7 +6,7 @@
 /*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 15:23:47 by fmaqdasi          #+#    #+#             */
-/*   Updated: 2024/11/09 15:23:49 by fmaqdasi         ###   ########.fr       */
+/*   Updated: 2024/11/11 19:52:08 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,24 +44,24 @@ void	set_horizontals(t_cub3d *cube, t_cast *cast)
 	cast->dof = 0;
 	if (cast->r_angle > 180)
 	{
-		cast->rayh.y = (((int) cube->player.p_y >> 6) << 6) - 0.0001;
-		cast->rayh.x = (cube->player.p_y - cast->rayh.y)
-			* (1 / tan(deg_to_rad(cast->r_angle))) + cube->player.p_x;
+		cast->rayh.y = (((int)cube->player_y >> 6) << 6) - 0.0001;
+		cast->rayh.x = (cube->player_y - cast->rayh.y) * (1
+				/ tan(deg_to_rad(cast->r_angle))) + cube->player_x;
 		cast->off.y = -64;
 		cast->off.x = -cast->off.y * (1 / tan(deg_to_rad(cast->r_angle)));
 	}
-	else if ((int) cast->r_angle == 0 || (int) cast->r_angle == 180)
+	else if ((int)cast->r_angle == 0 || (int)cast->r_angle == 180)
 	{
-		cast->rayh.x = cube->player.p_x;
-		cast->rayh.y = cube->player.p_y;
+		cast->rayh.x = cube->player_x;
+		cast->rayh.y = cube->player_y;
 		cast->dof = DEPTH_OF_FIELD;
 		cast->disth = 100000;
 	}
 	else
 	{
-		cast->rayh.y = (((int) cube->player.p_y >> 6) << 6) + 64;
-		cast->rayh.x = ((cube->player.p_y - cast->rayh.y)
-				* (1 / tan(deg_to_rad(cast->r_angle)))) + cube->player.p_x;
+		cast->rayh.y = (((int)cube->player_y >> 6) << 6) + 64;
+		cast->rayh.x = ((cube->player_y - cast->rayh.y) * (1
+					/ tan(deg_to_rad(cast->r_angle)))) + cube->player_x;
 		cast->off.y = 64;
 		cast->off.x = -cast->off.y * (1 / tan(deg_to_rad(cast->r_angle)));
 	}
@@ -74,9 +74,8 @@ void	set_rayh(t_cub3d *cube, t_cast *cast)
 		cast->disth = 100000;
 		if (cast->rayh.y / 64 < cube->map.height && cast->rayh.y / 64 >= 0
 			&& cast->rayh.x / 64 < cube->map.width && cast->rayh.x / 64 >= 0
-			&& (cube->map.points[(int)(cast->rayh.y / 64)]
-			[(int)(cast->rayh.x / 64)] == '1')
-			)
+			&& (cube->map.points[(int)(cast->rayh.y / 64)][(int)(cast->rayh.x
+			/ 64)] == '1'))
 		{
 			cast->disth = dist(cast->player, cast->rayh, cast->r_angle);
 			cast->dof = DEPTH_OF_FIELD;
@@ -98,24 +97,24 @@ void	set_verticals(t_cub3d *cube, t_cast *cast)
 	cast->dof = 0;
 	if (cast->r_angle > 90 && cast->r_angle < 270)
 	{
-		cast->rayv.x = (((int) cube->player.p_x >> 6) << 6) + 64;
-		cast->rayv.y = ((cube->player.p_x - cast->rayv.x)
-				* (tan(deg_to_rad(cast->r_angle)))) + cube->player.p_y;
+		cast->rayv.x = (((int)cube->player_x >> 6) << 6) + 64;
+		cast->rayv.y = ((cube->player_x - cast->rayv.x)
+				* (tan(deg_to_rad(cast->r_angle)))) + cube->player_y;
 		cast->off.x = 64;
 		cast->off.y = -cast->off.x * (tan(deg_to_rad(cast->r_angle)));
 		return ;
 	}
-	if ((int) cast->r_angle == 90 || (int) cast->r_angle == 270)
+	if ((int)cast->r_angle == 90 || (int)cast->r_angle == 270)
 	{
-		cast->rayv.x = cube->player.p_x;
-		cast->rayv.y = cube->player.p_y;
+		cast->rayv.x = cube->player_x;
+		cast->rayv.y = cube->player_y;
 		cast->dof = DEPTH_OF_FIELD;
 		cast->distv = 100000;
 		return ;
 	}
-	cast->rayv.x = (((int) cube->player.p_x >> 6) << 6) - 0.0001;
-	cast->rayv.y = ((cube->player.p_x - cast->rayv.x)
-			* (tan(deg_to_rad(cast->r_angle)))) + cube->player.p_y;
+	cast->rayv.x = (((int)cube->player_x >> 6) << 6) - 0.0001;
+	cast->rayv.y = ((cube->player_x - cast->rayv.x)
+			* (tan(deg_to_rad(cast->r_angle)))) + cube->player_y;
 	cast->off.x = -64;
 	cast->off.y = -cast->off.x * (tan(deg_to_rad(cast->r_angle)));
 }
@@ -125,11 +124,10 @@ void	set_rayv(t_cub3d *cube, t_cast *cast)
 	while (cast->dof < DEPTH_OF_FIELD)
 	{
 		cast->distv = 100000;
-		if (cast->rayv.x / 64 >= 0 && cast->rayv.y / 64 >= 0
-			&& cast->rayv.y / 64 < cube->map.height
-			&& cast->rayv.x / 64 < cube->map.width
-			&& (cube->map.points[(int)(cast->rayv.y / 64)]
-			[(int)(cast->rayv.x / 64)] == '1'))
+		if (cast->rayv.x / 64 >= 0 && cast->rayv.y / 64 >= 0 && cast->rayv.y
+			/ 64 < cube->map.height && cast->rayv.x / 64 < cube->map.width
+			&& (cube->map.points[(int)(cast->rayv.y / 64)][(int)(cast->rayv.x
+			/ 64)] == '1'))
 		{
 			cast->distv = dist(cast->player, cast->rayv, cast->r_angle);
 			cast->dof = DEPTH_OF_FIELD;

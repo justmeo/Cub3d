@@ -33,13 +33,12 @@ void	load_textures(t_cub3d *cube)
 
 void	initialize_map(t_cub3d *cube)
 {
-	cube->dir.w = false;
-	cube->dir.s = false;
-	cube->dir.a = false;
-	cube->dir.d = false;
-	cube->dir.left = false;
-	cube->dir.right = false;
-	cube->m = false;
+	cube->movement_w = false;
+	cube->movement_s = false;
+	cube->movement_a = false;
+	cube->movement_d = false;
+	cube->left = false;
+	cube->right = false;
 	cube->width = 800;
 	cube->height = 800;
 	cube->mlx = mlx_init();

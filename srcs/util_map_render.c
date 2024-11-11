@@ -6,13 +6,13 @@
 /*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 15:24:35 by fmaqdasi          #+#    #+#             */
-/*   Updated: 2024/11/11 15:53:58 by fmaqdasi         ###   ########.fr       */
+/*   Updated: 2024/11/11 19:48:54 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-//to be changed
+// to be changed
 void	cast_n_project(t_cub3d *cube, t_cast *cast)
 {
 	if (cast->distv <= cast->disth)
@@ -26,10 +26,6 @@ void	cast_n_project(t_cub3d *cube, t_cast *cast)
 	door_or_wall(cube, cast);
 	cast->height.x -= 1;
 	cast->lines.x -= 1;
-	if (cube->m && cast->distv <= cast->disth)
-		draw_line_dda(cast->player, cast->rayv, cube, 0x0055FFFF);
-	else if (cube->m)
-		draw_line_dda(cast->player, cast->rayh, cube, 0x0055FFFF);
 	cast->r_angle += 0.075;
 	if (cast->r_angle < 0)
 		cast->r_angle += 360;
@@ -37,7 +33,7 @@ void	cast_n_project(t_cub3d *cube, t_cast *cast)
 		cast->r_angle -= 360;
 }
 
-//to be changed
+// to be changed
 void	draw_rays(t_cub3d *cube)
 {
 	t_cast	cast;
@@ -45,11 +41,11 @@ void	draw_rays(t_cub3d *cube)
 	initialize_cast(&cast, cube);
 	while (cast.rays++ < 800)
 	{
-		cast.angle_diff = cube->player.p_angle - cast.r_angle;
+		cast.angle_diff = cube->player_angle - cast.r_angle;
 		if (cast.angle_diff < 0)
 			cast.angle_diff += 360;
-		cast.player.x = cube->player.p_x;
-		cast.player.y = cube->player.p_y;
+		cast.player.x = cube->player_x;
+		cast.player.y = cube->player_y;
 		cast.dof = 0;
 		set_horizontals(cube, &cast);
 		set_rayh(cube, &cast);
@@ -65,35 +61,68 @@ void	draw_rays(t_cub3d *cube)
 	}
 }
 
-//to be changed
-void	draw_map2(t_cub3d *cube)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (cube->m && cube->map.points[++i])
-	{
-		j = -1;
-		while (cube->map.points[i][++j])
-		{
-			if (cube->map.points[i][j] == '1')
-				draw_square(i, j, cube, 0x00FFFFFF);
-		}
-	}
-}
-
-//to be changed
+// to be changed
 void	render_map(t_cub3d *cube)
 {
 	cube->img = mlx_new_image(cube->mlx, cube->width, cube->height);
-	cube->addr = mlx_get_data_addr(cube->img, &cube->bpp,
-			&cube->line_length, &cube->endian);
+	cube->addr = mlx_get_data_addr(cube->img, &cube->bpp, &cube->line_length,
+			&cube->endian);
 	draw_floor_ceiling(cube);
 	draw_rays(cube);
-	draw_map2(cube);
-	if (cube->m)
-		draw_player(cube);
 	mlx_put_image_to_window(cube->mlx, cube->mlx_window, cube->img, 0, 0);
 	mlx_destroy_image(cube->mlx, cube->img);
+}
+
+// to be changed
+void	draw_square(int i, int j, t_cub3d *cube, int color)
+{
+	int	a;
+	int	b;
+	int	hold;
+
+	a = (i + 1) * 16;
+	b = (j + 1) * 16;
+	i *= 16;
+	hold = j * 16;
+	while (i < a)
+	{
+		j = hold;
+		while (j < b)
+		{
+			if (i == a - 1 || j == b - 1)
+				pixel_put(cube, j, i, 0x00DDDDDD);
+			else
+				pixel_put(cube, j, i, color);
+			j++;
+		}
+		i++;
+	}
+}
+
+// to be changed
+void	draw_angle(t_cub3d *cube3d)
+{
+	float	dy;
+	float	dx;
+	float	c;
+	int		i;
+
+	dx = (cube3d->player_x - cube3d->player_dx);
+	dy = (cube3d->player_y - cube3d->player_dy);
+	if (fabs(dx) > fabs(dy))
+		c = fabs(dx);
+	else
+		c = fabs(dy);
+	i = 0;
+	(void)i;
+	dx /= c;
+	dy /= c;
+	while (i <= c)
+	{
+		pixel_put(cube3d, cube3d->player_dx / 4, cube3d->player_dy / 4,
+			0x00FF0000);
+		cube3d->player_dy += dy;
+		cube3d->player_dx += dx;
+		i++;
+	}
 }

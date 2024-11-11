@@ -6,13 +6,13 @@
 /*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 15:23:29 by fmaqdasi          #+#    #+#             */
-/*   Updated: 2024/11/09 15:23:31 by fmaqdasi         ###   ########.fr       */
+/*   Updated: 2024/11/11 19:39:22 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-//to be changed
+// to be changed
 char	*readfile(int fd)
 {
 	char	*ntext;
@@ -41,11 +41,11 @@ char	*readfile(int fd)
 	return (text);
 }
 
-//to be changed
+// to be changed
 void	initialize_cast(t_cast *cast, t_cub3d *cube)
 {
 	cast->rays = 0;
-	cast->r_angle = cube->player.p_angle - 30;
+	cast->r_angle = cube->player_angle - 30;
 	if (cast->r_angle < 0)
 		cast->r_angle += 360;
 	cast->lines.x = 800;
@@ -53,7 +53,7 @@ void	initialize_cast(t_cast *cast, t_cub3d *cube)
 	cast->height.x = 800;
 }
 
-//to be changed
+// to be changed
 void	init(t_cub3d *cube)
 {
 	cube->map.points = NULL;

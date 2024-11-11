@@ -6,13 +6,13 @@
 /*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 15:24:18 by fmaqdasi          #+#    #+#             */
-/*   Updated: 2024/11/09 15:27:00 by fmaqdasi         ###   ########.fr       */
+/*   Updated: 2024/11/11 19:38:58 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-//to be changed
+// to be changed
 void	map_checker(t_cub3d *cub3d)
 {
 	int	row;
@@ -35,7 +35,7 @@ void	map_checker(t_cub3d *cub3d)
 	}
 }
 
-//to be changed
+// to be changed
 void	map_size(t_cub3d *cub3d)
 {
 	int	c;
@@ -54,37 +54,37 @@ void	map_size(t_cub3d *cub3d)
 	cub3d->map.height = c;
 }
 
-//to be changed
+// to be changed
 char	*get_pl(t_cub3d *cub3d, int c, char *str)
 {
-	cub3d->player.p_angle = -1;
+	cub3d->player_angle = -1;
 	if (ft_strchr(cub3d->map.points[c], 'N') != NULL)
 	{
 		str = ft_strchr(cub3d->map.points[c], 'N');
-		cub3d->player.p_angle = 270;
+		cub3d->player_angle = 270;
 	}
 	if (ft_strchr(cub3d->map.points[c], 'S') != NULL)
 	{
 		str = ft_strchr(cub3d->map.points[c], 'S');
-		cub3d->player.p_angle = 90;
+		cub3d->player_angle = 90;
 	}
 	if (ft_strchr(cub3d->map.points[c], 'E') != NULL)
 	{
 		str = ft_strchr(cub3d->map.points[c], 'E');
-		cub3d->player.p_angle = 180;
+		cub3d->player_angle = 180;
 	}
 	if (ft_strchr(cub3d->map.points[c], 'W') != NULL)
 	{
 		str = ft_strchr(cub3d->map.points[c], 'W');
-		cub3d->player.p_angle = 0;
+		cub3d->player_angle = 0;
 	}
-	if (cub3d->player.p_angle < 0
-		|| (ft_strlen(str) != ft_strlen(ft_strrchr(str, str[0]))))
+	if (cub3d->player_angle < 0 || (ft_strlen(str) != ft_strlen(ft_strrchr(str,
+					str[0]))))
 		error(cub3d, 3);
 	return (str);
 }
 
-//to be changed
+// to be changed
 void	check_player_exist(t_cub3d *cube)
 {
 	bool	flag;
@@ -105,7 +105,7 @@ void	check_player_exist(t_cub3d *cube)
 		error(cube, 3);
 }
 
-//to be changed
+// to be changed
 int	get_color(char *line)
 {
 	char	**spl;
@@ -120,9 +120,8 @@ int	get_color(char *line)
 		c++;
 	if (c != 3)
 		return (-1);
-	if ((spl[0] && spl[1] && spl[2])
-		&& (check_digit(ft_strtrim(spl[0], " ")) == 1)
-		&& (check_digit(ft_strtrim(spl[1], " ")) == 1)
+	if ((spl[0] && spl[1] && spl[2]) && (check_digit(ft_strtrim(spl[0],
+					" ")) == 1) && (check_digit(ft_strtrim(spl[1], " ")) == 1)
 		&& (check_digit(ft_strtrim(spl[2], " ")) == 1))
 		ret = create_trgb(1, ft_atoi(spl[0]), ft_atoi(spl[1]), ft_atoi(spl[2]));
 	else
