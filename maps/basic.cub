@@ -1,10 +1,10 @@
-NO ./brick.xpm
-SO ./brick.xpm
-WE ./brick.xpm
-EA ./brick.xpm
+EA ./textures/granite-stone.xpm
+WE ./textures/granite-stone.xpm
+NO ./textures/granite-stone.xpm
+SO ./textures/granite-stone.xpm
 
-F 220,100,0
-C 225,30,0
+F 150,75,0
+C 19,24,198
 
 111111
 100101

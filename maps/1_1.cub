@@ -1,10 +1,13 @@
-EA ./textures/brick.xpm
-WE ./textures/brick.xpm
-NO ./textures/wooden_floor_horizontal.xpm
-SO ./textures/wooden_floor_horizontal.xpm
+EA ./textures/granite-stone.xpm
+WE ./textures/granite-stone.xpm
+NO ./textures/dark-wood.xpm
+SO ./textures/dark-wood.xpm
 
-F 19,109,28
-C 19,24,98
+F 150,75,0
+C 19,24,198
+
+
+
         1111111111111111111111111
         1000000000110000000000001
         1011000001110000000000001
